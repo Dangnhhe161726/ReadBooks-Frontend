@@ -52,3 +52,7 @@ z
 Jbackend/src/main/java/com/example/backend/services/minio/MiniOService.java,e\a\ea6be10a15d4caf6b7c46c05d30a899688ca05c4
 s
 Cbackend/src/main/java/com/example/backend/models/entities/Book.java,c\2\c29a30a44de28243f26408648efe675e01441cba
+Ä
+Pbackend/src/main/java/com/example/backend/services/amazons3/AmazonS3Service.java,6\3\637ac42a38ff864fd09f2e25e6a81c1db4dc2762
+Å
+Qbackend/src/main/java/com/example/backend/services/amazons3/IAmazonS3Service.java,6\c\6c91940dd741ae22439f90e3ad8e1e9c0ff6a59d

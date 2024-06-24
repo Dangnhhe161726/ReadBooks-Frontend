@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60b09ea-c001-4e3a-86d9-0ccdbdb46f63" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/models/dtos/BookDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/models/entities/File.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/repositories/BookRepository.java" afterDir="false" />
@@ -36,6 +37,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+>>>>>>> a3e2203cde70775a322f7e3c8194222188eef72c
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +50,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+<<<<<<< HEAD
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/backend">
       <ProjectState />
@@ -76,6 +81,8 @@
       </list>
     </option>
   </component>
+=======
+>>>>>>> a3e2203cde70775a322f7e3c8194222188eef72c
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -96,6 +103,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Docker.deployment.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
@@ -124,6 +132,24 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/PRM392_Learn/ReadBooks/frontend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> a3e2203cde70775a322f7e3c8194222188eef72c
   }
 }</component>
   <component name="RunManager" selected="Docker.deployment.yaml: Compose Deployment">
@@ -165,9 +191,13 @@
       <option name="presentableId" value="Default" />
       <updated>1716903310269</updated>
       <workItem from="1716903311404" duration="22000" />
+<<<<<<< HEAD
       <workItem from="1717208735872" duration="614000" />
       <workItem from="1717209772127" duration="54000" />
       <workItem from="1717209886725" duration="1730000" />
+=======
+      <workItem from="1717208931558" duration="544000" />
+>>>>>>> a3e2203cde70775a322f7e3c8194222188eef72c
     </task>
     <servers />
   </component>

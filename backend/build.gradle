@@ -40,6 +40,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail:3.2.0'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.2.0'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Cloudinary dependency
+	implementation 'com.cloudinary:cloudinary-http44:1.38.0'
+	// Commons FileUpload dependency
+	implementation 'commons-fileupload:commons-fileupload:1.5'
+	// AWS Java SDK dependency
+	implementation 'com.amazonaws:aws-java-sdk:1.12.744'
 }
 
 tasks.named('test') {

@@ -33,5 +33,8 @@ replay_pid*
 /backend/native
 /backend/wrapper/
 
-.idea/
+/.idea/compiler.xml
+/.idea/modules/
+/.idea/sonarlint/
+/.idea/
 
