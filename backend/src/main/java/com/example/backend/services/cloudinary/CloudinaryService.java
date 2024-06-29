@@ -18,7 +18,7 @@ public class CloudinaryService implements ICloudinaryService{
 
     public String uploadFile(MultipartFile file) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(file.getBytes(),
-                ObjectUtils.asMap("resource_type", "auto"));
+                ObjectUtils.asMap("folder", "img_prm392"));
         return uploadResult.get("url").toString();
     }
 }
