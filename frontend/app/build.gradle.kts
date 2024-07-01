@@ -40,6 +40,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.security.crypto)
     implementation(libs.gson)
+    implementation(libs.picasso)
+//    implementation(libs.android.pdf.viewer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
