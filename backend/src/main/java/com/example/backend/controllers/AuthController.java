@@ -40,6 +40,7 @@ public class AuthController {
                     HttpResponse.builder()
                             .timeStamp(timeStamp)
                             .message(ValidationDataRequest.getMessageError(result))
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
                             .status(HttpStatus.BAD_REQUEST)
                             .build()
             );
@@ -86,6 +87,7 @@ public class AuthController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(
                     HttpResponse.builder()
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
                             .timeStamp(timeStamp)
                             .message(e.getMessage())
                             .build()
