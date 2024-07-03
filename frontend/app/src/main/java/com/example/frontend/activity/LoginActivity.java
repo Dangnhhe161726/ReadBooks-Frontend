@@ -1,7 +1,6 @@
 package com.example.frontend.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,12 +34,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+
     private ImageView imageView;
-    private TextView textView;
-    private int count = 0;
+    private TextView textView, tvLoginMess;
     private EditText edtLoginEmail, edtLoginPassword;
     private Button btnLoginSignIn, btnLoginSignUp;
     private TextView tvLoginForgetPassword;
+    private int count = 0;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -49,41 +49,55 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.login_page);
+        setContentView(R.layout.login_screen);
 
         initView();
+        handleIntent();
+        setupSwipeListener();
+        setupButtonListeners();
+    }
 
+    private void handleIntent() {
         Intent intent = getIntent();
         if (intent != null) {
             String email = intent.getStringExtra("email");
             String mess = intent.getStringExtra("mess");
             if (email != null) {
                 edtLoginEmail.setText(email);
+                tvLoginMess.setText(mess);
             }
             if (mess != null) {
                 Toast.makeText(LoginActivity.this, mess, Toast.LENGTH_LONG).show();
             }
         }
+    }
 
+    private void setupSwipeListener() {
         imageView.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()) {
+            @Override
             public void onSwipeTop() {
                 changeImageAndText();
             }
 
+            @Override
             public void onSwipeRight() {
                 changeImageAndText();
             }
 
+            @Override
             public void onSwipeLeft() {
                 changeImageAndText();
             }
 
+            @Override
             public void onSwipeBottom() {
                 changeImageAndText();
             }
         });
+    }
 
-        btnLoginSignIn.setOnClickListener(v -> SignIn());
+    private void setupButtonListeners() {
+        btnLoginSignIn.setOnClickListener(v -> signIn());
 
         btnLoginSignUp.setOnClickListener(v -> {
             Intent loginIntent = new Intent(LoginActivity.this, RegisterActivity.class);
@@ -104,24 +118,49 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void SignIn() {
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail(edtLoginEmail.getText().toString());
-        loginRequest.setPassword(edtLoginPassword.getText().toString());
-        UserService.userService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse = response.body();
-                saveToken(loginResponse.getData().getToken());
-                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(loginIntent);
-            }
+    private void signIn() {
+        try {
+            validateInputs();
 
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable throwable) {
-                responseDataFail(throwable, "Login fail");
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.setEmail(edtLoginEmail.getText().toString());
+            loginRequest.setPassword(edtLoginPassword.getText().toString());
+            UserService.userService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    handleLoginResponse(response);
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable throwable) {
+                    responseDataFail(throwable, "Login failed");
+                }
+            });
+        } catch (Exception ex) {
+            tvLoginMess.setText(ex.toString());
+        }
+    }
+
+    private void validateInputs() throws Exception {
+        if (edtLoginEmail.getText().toString().isEmpty())
+            throw new Exception("Email is not empty");
+        if (edtLoginPassword.getText().toString().isEmpty())
+            throw new Exception("Password is not empty");
+    }
+
+    private void handleLoginResponse(Response<LoginResponse> response) {
+        if (response == null || response.body() == null) {
+            Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+        } else {
+            LoginResponse loginResponse = response.body();
+            if (loginResponse.getStatusCode() == 200) {
+                saveToken(loginResponse.getData().getToken());
+                Intent loginIntent = new Intent(LoginActivity.this, SearchActivity.class);
+                startActivity(loginIntent);
+            } else {
+                Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
             }
-        });
+        }
     }
 
     private void saveToken(String token) {
@@ -136,46 +175,6 @@ public class LoginActivity extends AppCompatActivity {
             );
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("token", token);
-            editor.apply();
-        } catch (GeneralSecurityException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void getToken() {
-        try {
-            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-                    "MyPrefs",
-                    masterKeyAlias,
-                    this,
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            );
-            String token = sharedPreferences.getString("token", null);
-
-            if (token != null) {
-                // Sử dụng token để gọi API hoặc thực hiện các thao tác khác
-            } else {
-                // Xử lý khi không có token được lưu trữ
-            }
-        } catch (GeneralSecurityException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void deleteToken() {
-        try {
-            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-                    "MyPrefs",
-                    masterKeyAlias,
-                    this,
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            );
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.remove("token");
             editor.apply();
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
@@ -197,5 +196,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginSignIn = findViewById(R.id.btnLoginSignIn);
         btnLoginSignUp = findViewById(R.id.btnLoginSignUp);
         tvLoginForgetPassword = findViewById(R.id.tvLoginForgetPassword);
+        tvLoginMess = findViewById(R.id.tvLoginMess);
     }
 }

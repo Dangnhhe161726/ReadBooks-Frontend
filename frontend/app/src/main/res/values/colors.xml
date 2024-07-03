@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="textInputLayout">#96ffffff</color>
+    <color name="red">#F44336</color>
+    <color name="orange">#FF5722</color>
 </resources>
