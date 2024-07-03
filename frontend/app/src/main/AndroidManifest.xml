@@ -23,7 +23,10 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
+        <activity
+            android:name=".activity.SearchActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true">

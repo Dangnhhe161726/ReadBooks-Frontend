@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context=".activity.RegisterActivity">
+    tools:context=".activity.LoginActivity">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -92,6 +92,14 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp">
 
+        <TextView
+            android:id="@+id/tvLoginMess"
+            android:layout_marginBottom="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/red"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,27 +107,7 @@
             android:theme="@style/EditScreenTextInputLayoutStyle">
 
             <EditText
-                android:id="@+id/edtRegisterFullName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableEnd="@drawable/ic_full_name_white_24dp"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/calibri"
-                android:hint="Full name"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#96ffffff"
-            android:theme="@style/EditScreenTextInputLayoutStyle">
-
-            <EditText
-                android:id="@+id/edtRegisterEmail"
+                android:id="@+id/edtLoginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableEnd="@drawable/ic_email_white_24dp"
@@ -139,53 +127,13 @@
             android:theme="@style/EditScreenTextInputLayoutStyle">
 
             <EditText
-                android:id="@+id/edtRegisterPhone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableEnd="@drawable/ic_phone_number_white_24dp"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/calibri"
-                android:hint="Phone number"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#96ffffff"
-            android:theme="@style/EditScreenTextInputLayoutStyle">
-
-            <EditText
-                android:id="@+id/edtRegisterPass"
+                android:id="@+id/editLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableEnd="@drawable/ic_lock_white_24dp"
                 android:drawablePadding="16dp"
                 android:fontFamily="@font/calibri"
                 android:hint="Password"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#96ffffff"
-            android:theme="@style/EditScreenTextInputLayoutStyle">
-
-            <EditText
-                android:id="@+id/edtRegisterRePass"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableEnd="@drawable/ic_lock_white_24dp"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/calibri"
-                android:hint="Repassword"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@android:color/white"
@@ -200,12 +148,24 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-
             <Button
-                android:id="@+id/btnRegisterSignIn"
+                android:id="@+id/btnLoginSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:background="@drawable/buttonshapewhitebg"
+                android:fontFamily="@font/calibri"
+                android:text="Sign up"
+                android:textAllCaps="false"
+                android:textColor="#96ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnLoginSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/buttonshapewhitebg"
                 android:fontFamily="@font/calibri"
                 android:text="Sign in"
@@ -214,23 +174,12 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnRegisterSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@drawable/buttonshapewhitebg"
-                android:fontFamily="@font/calibri"
-                android:text="Sign up"
-                android:textAllCaps="false"
-                android:textColor="#96ffffff"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+
         </LinearLayout>
 
 
         <TextView
-            android:id="@+id/tvRegisterForgetPassword"
+            android:id="@+id/tvLoginForgetPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
