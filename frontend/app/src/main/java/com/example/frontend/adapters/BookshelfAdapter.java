@@ -1,5 +1,6 @@
 package com.example.frontend.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,27 +12,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.models.Book;
 import com.example.frontend.R;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class BookshelfAdapter extends RecyclerView.Adapter<BookshelfAdapter.BookViewHolder> {
     private List<Book> bookList;
+    private Context context;
 
-    public BookshelfAdapter(List<Book> bookList) {
+
+    public BookshelfAdapter(Context context,List<Book> bookList) {
+        this.context = context;
+
         this.bookList = bookList;
     }
     @NonNull
     @Override
     public BookshelfAdapter.BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_book, parent, false);
         return new BookViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BookshelfAdapter.BookViewHolder holder, int position) {
         Book book = bookList.get(position);
-        holder.ivBookCover.setImageResource(book.getCoverResourceId());
-        holder.tvBookTitle.setText(book.getTitle());
-        holder.tvBookAuthor.setText(book.getAuthor());
+        Picasso.get().load(book.getThumbnail()).into(holder.ivBookCover);
+        holder.tvBookTitle.setText(book.getName());
+        holder.tvBookAuthor.setText(book.getAuthor().getName());
     }
 
     @Override

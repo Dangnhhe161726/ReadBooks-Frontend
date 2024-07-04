@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation("com.squareup.picasso:picasso:2.5.2")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

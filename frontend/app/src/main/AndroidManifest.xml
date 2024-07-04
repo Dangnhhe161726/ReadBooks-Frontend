@@ -23,14 +23,12 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-<<<<<<< HEAD
             android:exported="true"></activity>
-=======
-            android:exported="false" />
+
         <activity
             android:name=".activity.SearchActivity"
             android:exported="false" />
->>>>>>> HongDang
+
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true">

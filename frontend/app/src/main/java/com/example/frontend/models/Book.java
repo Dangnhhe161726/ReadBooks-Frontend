@@ -1,25 +1,109 @@
 package com.example.frontend.models;
 
+import java.sql.Date;
+import java.util.List;
+
 public class Book {
-    private String title;
-    private String author;
-    private int coverResourceId;
+    private Long id;
+    private String name;
+    private String link;
+    private int view;
+    private int favorites;
+    private String thumbnail;
+    private Date createTime;
+    private Date updateTime;
+    private String introduce;
+    private boolean status;
+    private Author author;
+//    private UserBookResponse userEntity;
+//    private List<CategoryResponse> categorys;
 
-    public Book(String title, String author, int coverResourceId) {
-        this.title = title;
-        this.author = author;
-        this.coverResourceId = coverResourceId;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public int getCoverResourceId() {
-        return coverResourceId;
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
+    }
+
+    public int getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(int favorites) {
+        this.favorites = favorites;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
