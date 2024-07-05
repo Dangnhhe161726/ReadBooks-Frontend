@@ -55,6 +55,7 @@ public class SearchActivity extends AppCompatActivity {
             case 1:
                 BookFragment bookFragment = (BookFragment) adapter.getFragment(currentItem);
                 bookFragment.searchBooks(query);
+                bookFragment.setQuery(query);
                 break;
             case 2:
                 CategoryFragment categoryFragment = (CategoryFragment) adapter.getFragment(currentItem);

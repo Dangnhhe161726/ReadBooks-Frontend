@@ -12,6 +12,7 @@ converterGson = "2.11.0"
 securityCrypto = "1.1.0-alpha06"
 gson = "2.11.0"
 picasso = "2.71828"
+glide = "5.0.0-rc01"
 #androidPdfViewer = "3.2.0-beta.1"
 
 [libraries]
@@ -27,6 +28,7 @@ converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ve
 security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "securityCrypto" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 #android-pdf-viewer = { group = "com.github.barteksc", name = "android-pdf-viewer", version.ref = "androidPdfViewer" }
 
 [plugins]

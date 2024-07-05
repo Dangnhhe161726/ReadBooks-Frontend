@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffd8ea"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp">
+
+            <ImageButton
+                android:id="@+id/imgISearch"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/i1" />
+        </androidx.cardview.widget.CardView>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp">
+
+            <TextView
+                android:id="@+id/tvNameISearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Name book"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAuthorISearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvNameISearch"
+                android:paddingBottom="10dp"
+                android:text="Author book"
+                android:textColor="@color/black"
+                android:textStyle="italic" />
+
+            <Button
+                android:id="@+id/btnCategoryISearch"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/tvAuthorISearch"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_button_search_screen"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="category book"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/heart_item_book" />
+
+                <TextView
+                    android:id="@+id/tvFavoritesISearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
