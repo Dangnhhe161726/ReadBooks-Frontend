@@ -25,5 +25,8 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2Search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 </LinearLayout>
