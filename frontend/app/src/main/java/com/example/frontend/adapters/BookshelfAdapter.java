@@ -29,9 +29,9 @@ public class BookshelfAdapter extends RecyclerView.Adapter<BookshelfAdapter.Book
     @Override
     public void onBindViewHolder(@NonNull BookshelfAdapter.BookViewHolder holder, int position) {
         Book book = bookList.get(position);
-        holder.ivBookCover.setImageResource(book.getCoverResourceId());
-        holder.tvBookTitle.setText(book.getTitle());
-        holder.tvBookAuthor.setText(book.getAuthor());
+//        holder.ivBookCover.setImageResource(book.getCoverResourceId());
+//        holder.tvBookTitle.setText(book.getTitle());
+//        holder.tvBookAuthor.setText(book.getAuthor());
     }
 
     @Override

@@ -1,13 +1,13 @@
-package com.example.frontend.response;
+package com.example.frontend.models;
 
-public class AuthorResponse {
+public class Author {
     private Long id;
     private String name;
 
-    public AuthorResponse() {
+    public Author() {
     }
 
-    public AuthorResponse(Long id, String name) {
+    public Author(Long id, String name) {
         this.id = id;
         this.name = name;
     }

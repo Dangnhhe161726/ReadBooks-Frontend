@@ -1,9 +1,11 @@
 package com.example.frontend.response;
 
+import com.example.frontend.models.Book;
+
 import java.util.List;
 
 public class PaginationResponse {
-    private List<BookResponse> content;
+    private List<Book> content;
     private PageableResponse pageable;
     private boolean last;
     private int totalElements;
@@ -18,11 +20,11 @@ public class PaginationResponse {
     public PaginationResponse() {
     }
 
-    public List<BookResponse> getContent() {
+    public List<Book> getContent() {
         return content;
     }
 
-    public void setContent(List<BookResponse> content) {
+    public void setContent(List<Book> content) {
         this.content = content;
     }
 

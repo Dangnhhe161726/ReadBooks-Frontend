@@ -1,13 +1,15 @@
 package com.example.frontend.response;
 
+import com.example.frontend.models.Data;
+
 public class RegisterResponse {
     private String timeStamp;
     private int statusCode;
     private String status;
     private String message;
-    private DataResponse data;
+    private Data data;
 
-    public RegisterResponse(String timeStamp, int statusCode, String status, String message, DataResponse data) {
+    public RegisterResponse(String timeStamp, int statusCode, String status, String message, Data data) {
         this.timeStamp = timeStamp;
         this.statusCode = statusCode;
         this.status = status;
@@ -50,11 +52,11 @@ public class RegisterResponse {
         this.message = message;
     }
 
-    public DataResponse getData() {
+    public Data getData() {
         return data;
     }
 
-    public void setData(DataResponse data) {
+    public void setData(Data data) {
         this.data = data;
     }
 }

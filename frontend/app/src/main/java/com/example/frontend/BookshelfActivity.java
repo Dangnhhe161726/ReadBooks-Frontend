@@ -26,14 +26,6 @@ public class BookshelfActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        bookList = new ArrayList<>();
-        bookList.add(new Book("1Q84", "Haruki Murakami", R.drawable.i5));
-        bookList.add(new Book("what i talk about when i talk about running", "Haruki Murakami", R.drawable.i1));
-        bookList.add(new Book("what i talk about when i talk about running", "Haruki Murakami", R.drawable.i2));
-        bookList.add(new Book("what i talk about when i talk about running", "Haruki Murakami", R.drawable.i3));
-        bookList.add(new Book("what i talk about when i talk about running", "Haruki Murakami", R.drawable.i4));
-        // Add more books here...
-
         adapter = new BookshelfAdapter(bookList);
         recyclerView.setAdapter(adapter);
     }

@@ -1,13 +1,13 @@
-package com.example.frontend.response;
+package com.example.frontend.models;
 
-public class CategoryResponse {
+public class Category {
     private Long id;
     private String name;
 
-    public CategoryResponse() {
+    public Category() {
     }
 
-    public CategoryResponse(Long id, String name) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
     }
