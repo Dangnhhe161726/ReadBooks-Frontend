@@ -1,5 +1,7 @@
 package com.example.frontend.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -10,21 +12,31 @@ public class Book {
     private int view;
     private int favorites;
     private String thumbnail;
+    @SerializedName("create_time")
     private Date createTime;
+    @SerializedName("update_time")
     private Date updateTime;
     private String introduce;
     private boolean status;
     private Author author;
-//    private UserBookResponse userEntity;
-//    private List<CategoryResponse> categorys;
+    private List<Category> categories;
 
-
-    public Author getAuthor() {
-        return author;
+    public Book() {
     }
 
-    public void setAuthor(Author author) {
+    public Book(Long id, String name, String link, int view, int favorites, String thumbnail, Date createTime, Date updateTime, String introduce, boolean status, Author author, List<Category> categories) {
+        this.id = id;
+        this.name = name;
+        this.link = link;
+        this.view = view;
+        this.favorites = favorites;
+        this.thumbnail = thumbnail;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.introduce = introduce;
+        this.status = status;
         this.author = author;
+        this.categories = categories;
     }
 
     public Long getId() {
@@ -105,5 +117,21 @@ public class Book {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }

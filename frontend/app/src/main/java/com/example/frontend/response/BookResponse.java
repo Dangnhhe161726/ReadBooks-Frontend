@@ -1,6 +1,10 @@
 package com.example.frontend.response;
 
 import com.example.frontend.models.Data;
+import com.google.gson.annotations.SerializedName;
+
+import java.sql.Date;
+import java.util.List;
 
 public class BookResponse {
     private String timeStamp;

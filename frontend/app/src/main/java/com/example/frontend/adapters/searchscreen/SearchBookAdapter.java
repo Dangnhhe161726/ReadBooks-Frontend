@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.frontend.R;
-import com.example.frontend.response.BookResponse;
+import com.example.frontend.models.Book;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +20,18 @@ import java.util.List;
 
 public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.SearchBookViewHolder> {
 
-    private List<BookResponse> bookResponses = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
     private SearchBookItemListener searchBookItemListener;
 
     public SearchBookAdapter() {
     }
 
-    public List<BookResponse> getBookResponses() {
-        return bookResponses;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setBookResponses(List<BookResponse> bookResponses) {
-        this.bookResponses = bookResponses;
+    public void setBooks(List<Book> books) {
+        books = books;
     }
 
     public SearchBookItemListener getSearchBookItemListener() {
@@ -51,33 +51,33 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
 
     @Override
     public void onBindViewHolder(@NonNull SearchBookViewHolder holder, int position) {
-        BookResponse bookResponse = bookResponses.get(position);
-        String url = bookResponse.getThumbnail();
+        Book book = books.get(position);
+        String url = book.getThumbnail();
         Glide.with(holder.itemView.getContext())
                 .load(url)
                 .placeholder(R.drawable.img_loading)
                 .error(R.drawable.img_error)
                 .into(holder.imgISearch);
-        holder.tvNameISearch.setText(bookResponse.getName());
-        holder.tvAuthorISearch.setText(bookResponse.getAuthor().getName());
-        holder.tvFavoritesISearch.setText(String.format("%d", bookResponse.getFavorites()));
-        if(bookResponse.getCategories() == null){
+        holder.tvNameISearch.setText(book.getName());
+        holder.tvAuthorISearch.setText(book.getAuthor().getName());
+        holder.tvFavoritesISearch.setText(String.format("%d", book.getFavorites()));
+        if(book.getCategories() == null){
             holder.btnCategoryISearch.setText("Uncategorized yet");
         }else {
-            holder.btnCategoryISearch.setText(bookResponse.getCategories().get(0).getName());
+            holder.btnCategoryISearch.setText(book.getCategories().get(0).getName());
         }
     }
 
-    public void addBooks(List<BookResponse> bookResponseList) {
-        if(bookResponseList != null){
-            bookResponses.addAll(bookResponseList);
+    public void addBooks(List<Book> bookList) {
+        if(bookList != null){
+            books.addAll(bookList);
             notifyDataSetChanged();
         }
     }
 
     @Override
     public int getItemCount() {
-        return bookResponses.size();
+        return books.size();
     }
 
     public interface SearchBookItemListener {
