@@ -1,4 +1,4 @@
-package com.example.frontend.response;
+package com.example.frontend.responses;
 
 import com.example.frontend.models.Data;
 

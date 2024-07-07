@@ -9,16 +9,14 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
 import com.example.frontend.adapters.BookshelfAdapter;
 import com.example.frontend.models.Book;
-import com.example.frontend.network.RetrofitClient;
-import com.example.frontend.response.BookResponse;
-import com.example.frontend.service.BookService;
-import com.example.frontend.service.CategoryService;
+import com.example.frontend.networks.RetrofitClient;
+import com.example.frontend.responses.BookResponse;
+import com.example.frontend.services.BookService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +31,6 @@ public class MyBookFragment extends Fragment {
     private BookshelfAdapter bookAdapter;
     private BookService bookService;
     List<Book> bookList;
-    private String authToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW1vbnNzMDkxMEBnbWFpbC5jb20iLCJpYXQiOjE3MjAxMDQ5MzYsImV4cCI6MTcyMDE1NTAwMn0.AtRV7-GGrHLpv4x6rjV6p-sYjfw3MqSk-Qyn6o8kEhLhMin5-1c_F8E0XcWYwqPq-JeMg2bsI4w-piNHp3VKeQ";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,11 +41,11 @@ public class MyBookFragment extends Fragment {
         bookList = new ArrayList<>();
         bookAdapter = new BookshelfAdapter(getContext(), bookList);
         recyclerView.setAdapter(bookAdapter);
-
-        bookService = RetrofitClient.getClient(authToken).create(BookService.class);
+        bookService = RetrofitClient.getClient(view.getContext()).create(BookService.class);
         fetchBooks(1L);
         return view;
     }
+
     private void fetchBooks(Long id) {
         Call<BookResponse> call = bookService.getBooksByUserId(id);
         call.enqueue(new Callback<BookResponse>() {

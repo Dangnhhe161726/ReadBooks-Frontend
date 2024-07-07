@@ -1,16 +1,12 @@
-package com.example.frontend.response;
+package com.example.frontend.requests;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.sql.Date;
+import java.util.List;
 
-public class UserResponse {
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+public class RegisterRequest {
+    public RegisterRequest() {
     }
 
     public String getFullName() {
@@ -37,20 +33,20 @@ public class UserResponse {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getDob() {
-        return dob;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getRepassword() {
+        return repassword;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
     }
 
     public String getAddress() {
@@ -69,38 +65,31 @@ public class UserResponse {
         this.gender = gender;
     }
 
-    public boolean isStatus() {
-        return status;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
-    @SerializedName("id")
-    private long id;
+    public List<Long> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Long> roles) {
+        this.roles = roles;
+    }
 
     @SerializedName("full_name")
     private String fullName;
-
-    @SerializedName("email")
     private String email;
-
     @SerializedName("phone_number")
     private String phoneNumber;
-
-    @SerializedName("date_of_birth")
-    private Date dob;
-
-    @SerializedName("avatar")
-    private String avatar;
-
-    @SerializedName("address")
+    private String password;
+    private String repassword;
     private String address;
-
-    @SerializedName("gender")
     private boolean gender;
-
-    @SerializedName("status")
-    private boolean status;
+    private Date dob;
+    private List<Long> roles;
 }

@@ -3,7 +3,6 @@ package com.example.frontend;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.frontend.fragments.HomeFragment;
 import com.example.frontend.fragments.MyBookFragment;
 import com.example.frontend.fragments.MyProfileFragment;
-import com.example.frontend.fragments.SearchFragment;
+import com.example.frontend.fragments.searchscreen.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 

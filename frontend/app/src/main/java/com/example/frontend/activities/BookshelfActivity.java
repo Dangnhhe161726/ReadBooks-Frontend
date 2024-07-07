@@ -1,16 +1,14 @@
-package com.example.frontend;
+package com.example.frontend.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.frontend.R;
 import com.example.frontend.adapters.BookshelfAdapter;
 import com.example.frontend.models.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookshelfActivity extends AppCompatActivity {

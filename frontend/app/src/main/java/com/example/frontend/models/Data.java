@@ -1,6 +1,6 @@
 package com.example.frontend.models;
 
-import com.example.frontend.response.UserResponse;
+import com.example.frontend.responses.UserResponse;
 
 import java.util.List;
 

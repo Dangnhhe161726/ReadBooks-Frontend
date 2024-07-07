@@ -1,4 +1,4 @@
-package com.example.frontend.fragments;
+package com.example.frontend.fragments.searchscreen;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,16 +22,17 @@ public class SearchFragment extends Fragment {
     private TabLayout tabLayoutSearch;
     private ViewPager2 viewPager2Search;
     private FragmentAdapter adapter;
-   private View view;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.search_screen, container, false);
+        view = inflater.inflate(R.layout.search_screen, container, false);
         initView();
         setupSearchView();
         return view;
     }
+
     private void setupSearchView() {
         searchViewSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -46,6 +47,7 @@ public class SearchFragment extends Fragment {
             }
         });
     }
+
     private void performSearch(String query) {
         int currentItem = viewPager2Search.getCurrentItem();
         switch (currentItem) {

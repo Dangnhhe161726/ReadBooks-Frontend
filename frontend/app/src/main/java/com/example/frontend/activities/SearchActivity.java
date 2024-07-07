@@ -1,4 +1,4 @@
-package com.example.frontend.activity;
+package com.example.frontend.activities;
 
 import android.os.Bundle;
 

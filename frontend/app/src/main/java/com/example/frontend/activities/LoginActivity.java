@@ -1,4 +1,4 @@
-package com.example.frontend.activity;
+package com.example.frontend.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,11 +20,11 @@ import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
 
 import com.example.frontend.MainActivity;
-import com.example.frontend.OnSwipeTouchListener;
+import com.example.frontend.events.OnSwipeTouchListener;
 import com.example.frontend.R;
-import com.example.frontend.request.LoginRequest;
-import com.example.frontend.response.LoginResponse;
-import com.example.frontend.service.UserService;
+import com.example.frontend.requests.LoginRequest;
+import com.example.frontend.responses.LoginResponse;
+import com.example.frontend.services.UserService;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
             LoginResponse loginResponse = response.body();
             if (loginResponse.getStatusCode() == 200) {
                 saveToken(loginResponse.getData().getToken());
-                Intent loginIntent = new Intent(LoginActivity.this, SearchActivity.class);
+                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(loginIntent);
             } else {
                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
@@ -180,6 +180,9 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+
 
     private void responseDataFail(Throwable throwable, String mess) {
         Log.e("API Error", "onFailure: ", throwable);

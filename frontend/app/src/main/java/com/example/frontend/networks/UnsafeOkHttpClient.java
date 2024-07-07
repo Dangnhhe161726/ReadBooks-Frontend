@@ -1,4 +1,4 @@
-package com.example.frontend.network;
+package com.example.frontend.networks;
 
 import java.security.cert.CertificateException;
 

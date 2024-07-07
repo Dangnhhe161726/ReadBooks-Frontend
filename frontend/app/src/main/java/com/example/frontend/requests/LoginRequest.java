@@ -1,4 +1,4 @@
-package com.example.frontend.request;
+package com.example.frontend.requests;
 
 public class LoginRequest {
     private String email;

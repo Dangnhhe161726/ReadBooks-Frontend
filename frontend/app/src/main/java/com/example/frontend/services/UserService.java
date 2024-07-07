@@ -1,11 +1,10 @@
-package com.example.frontend.service;
+package com.example.frontend.services;
 
-import com.example.frontend.network.UnsafeOkHttpClient;
-import com.example.frontend.request.LoginRequest;
-import com.example.frontend.request.RegisterRequest;
-import com.example.frontend.response.LoginResponse;
-import com.example.frontend.response.RegisterResponse;
-import com.example.frontend.response.UserResponse;
+import com.example.frontend.networks.UnsafeOkHttpClient;
+import com.example.frontend.requests.LoginRequest;
+import com.example.frontend.requests.RegisterRequest;
+import com.example.frontend.responses.LoginResponse;
+import com.example.frontend.responses.RegisterResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

@@ -1,4 +1,4 @@
-package com.example.frontend.activity;
+package com.example.frontend.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,12 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.frontend.OnSwipeTouchListener;
+import com.example.frontend.events.OnSwipeTouchListener;
 import com.example.frontend.R;
-import com.example.frontend.request.RegisterRequest;
-import com.example.frontend.response.RegisterResponse;
-import com.example.frontend.response.UserResponse;
-import com.example.frontend.service.UserService;
+import com.example.frontend.requests.RegisterRequest;
+import com.example.frontend.responses.RegisterResponse;
+import com.example.frontend.responses.UserResponse;
+import com.example.frontend.services.UserService;
 
 import java.util.Collections;
 

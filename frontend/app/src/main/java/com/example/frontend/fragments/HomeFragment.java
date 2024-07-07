@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.frontend.R;
 import com.example.frontend.models.Category;
-import com.example.frontend.network.RetrofitClient;
-import com.example.frontend.response.CategoryResponse;
-import com.example.frontend.service.CategoryService;
+import com.example.frontend.networks.RetrofitClient;
+import com.example.frontend.responses.CategoryResponse;
+import com.example.frontend.services.CategoryService;
 
 import java.util.List;
 
@@ -25,14 +25,13 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     private LinearLayout categoryContainer;
     private CategoryService categoryService;
-    private String authToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW1vbnNzMDkxMEBnbWFpbC5jb20iLCJpYXQiOjE3MjAwNTkzODAsImV4cCI6MTcyMDEwOTQ0NX0.cj0S6oOLTziMOtCAS1XEmWfODIEE8omttW0Q1cJAtOIyywrD2xQXWMPYn5sha8cBL9pOs4UYrSvpRpw32kr_Uw"; // You should get this token after user logs in
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_page, container, false);
         categoryContainer = view.findViewById(R.id.categoryContainer);
-        categoryService = RetrofitClient.getClient(authToken).create(CategoryService.class);
+        categoryService = RetrofitClient.getClient(view.getContext()).create(CategoryService.class);
         fetchCategories();
         return view;
 

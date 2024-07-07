@@ -1,4 +1,4 @@
-package com.example.frontend;
+package com.example.frontend.events;
 
 import android.content.Context;
 import android.view.GestureDetector;

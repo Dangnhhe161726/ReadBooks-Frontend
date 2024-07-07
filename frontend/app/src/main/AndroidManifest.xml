@@ -16,30 +16,29 @@
         android:theme="@style/Theme.Frontend"
         tools:targetApi="31">
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".BookshelfActivity"
+            android:name=".activities.BookshelfActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
-
-        <activity
-            android:name=".activity.SearchActivity"
             android:exported="false" />
 
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activities.SearchActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomePageActivity"
+            android:name=".activities.HomePageActivity"
             android:exported="false" />
     </application>
 

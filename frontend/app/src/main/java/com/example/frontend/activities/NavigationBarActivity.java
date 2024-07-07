@@ -1,4 +1,4 @@
-package com.example.frontend;
+package com.example.frontend.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,7 +15,7 @@ import com.example.frontend.R;
 import com.example.frontend.fragments.HomeFragment;
 import com.example.frontend.fragments.MyBookFragment;
 import com.example.frontend.fragments.MyProfileFragment;
-import com.example.frontend.fragments.SearchFragment;
+import com.example.frontend.fragments.searchscreen.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 

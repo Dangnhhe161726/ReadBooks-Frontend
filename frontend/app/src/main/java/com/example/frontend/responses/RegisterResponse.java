@@ -1,17 +1,24 @@
-package com.example.frontend.response;
+package com.example.frontend.responses;
 
 import com.example.frontend.models.Data;
-import com.google.gson.annotations.SerializedName;
 
-import java.sql.Date;
-import java.util.List;
-
-public class BookResponse {
+public class RegisterResponse {
     private String timeStamp;
     private int statusCode;
     private String status;
     private String message;
     private Data data;
+
+    public RegisterResponse(String timeStamp, int statusCode, String status, String message, Data data) {
+        this.timeStamp = timeStamp;
+        this.statusCode = statusCode;
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
+
+    public RegisterResponse() {
+    }
 
     public String getTimeStamp() {
         return timeStamp;
