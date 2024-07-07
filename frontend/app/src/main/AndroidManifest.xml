@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Frontend"
         tools:targetApi="31">
         <activity
+            android:name=".activity.BookDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ReadBookActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.RegisterActivity"
             android:exported="false" />
         <activity
@@ -23,12 +29,10 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
-
+            android:exported="true" />
         <activity
             android:name=".activity.SearchActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true">
