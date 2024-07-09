@@ -16,34 +16,33 @@
         android:theme="@style/Theme.Frontend"
         tools:targetApi="31">
         <activity
-            android:name=".activity.BookDetailActivity"
+            android:name=".activities.BookDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ReadBookActivity"
+            android:name=".activities.ReadBookActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.RegisterActivity"
-            android:exported="false" />
+            android:name=".activities.RegisterActivity" />
         <activity
-            android:name=".BookshelfActivity"
+            android:name=".activities.BookshelfActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SearchActivity"
+            android:name=".activities.SearchActivity"
             android:exported="false" />
+
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomePageActivity"
+            android:name=".activities.HomePageActivity"
             android:exported="false" />
     </application>
 

@@ -1,8 +1,9 @@
-package com.example.frontend;
+package com.example.frontend.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.frontend.R;
 import com.example.frontend.fragments.HomeFragment;
 import com.example.frontend.fragments.MyBookFragment;
 import com.example.frontend.fragments.MyProfileFragment;
@@ -17,16 +19,18 @@ import com.example.frontend.fragments.searchscreen.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+public class NavigationBarActivity extends AppCompatActivity {
+    private LinearLayout categoryContainer;
+
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.toolbar_custom);
         bottomNavigationView = findViewById(R.id.bottomNavView);
-        frameLayout = findViewById(R.id.fragmentContainer);
+        frameLayout = findViewById(R.id.frame_layout);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -43,17 +47,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
     }
+
     private void loadFragment(Fragment fragment, boolean isInit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (isInit) {
-            fragmentTransaction.add(R.id.fragmentContainer, fragment);
+            fragmentTransaction.add(R.id.frame_layout, fragment);
 
         } else {
-            fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+            fragmentTransaction.replace(R.id.frame_layout, fragment);
         }
-        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
 }

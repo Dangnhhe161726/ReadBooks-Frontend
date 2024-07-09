@@ -1,140 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- Horizontal layout for book image, title, author -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <!-- Horizontal layout for book image, title, author -->
+        <!-- ImageView for book image -->
+        <ImageView
+            android:id="@+id/ivThumbnail"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/i1" />
+
+        <!-- Vertical layout for title, author, views, favorites -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="16dp">
 
-            <!-- ImageView for book image -->
-            <ImageView
-                android:id="@+id/book_image"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/i1" />
-
-            <!-- Vertical layout for title, author, likes, views, favorites -->
-            <LinearLayout
-                android:layout_width="0dp"
+            <!-- TextView for book name -->
+            <TextView
+                android:id="@+id/tvBookTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingStart="16dp">
+                android:text="Book Name"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-                <!-- TextView for book name -->
-                <TextView
-                    android:id="@+id/tvBookTitle"
-                    android:layout_width="match_parent"
+            <!-- TextView for author name -->
+            <TextView
+                android:id="@+id/tvBookAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Author Name"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <!-- LinearLayout for likes, views, favorites -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <!-- LinearLayout for favorites with icon -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Book Name"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
 
-                <!-- TextView for author name -->
-                <TextView
-                    android:id="@+id/tvBookAuthor"
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/ic_love" />
+
+                    <TextView
+                        android:id="@+id/tvFavorites"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100 Favorites"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!-- LinearLayout for views with icon -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/ic_viewer" />
+
+                    <TextView
+                        android:id="@+id/tvViewer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="200 Views"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!-- RecyclerView for categories -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Author Name"
-                    android:textSize="20sp" />
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    app:layoutManager_orientation="horizontal" />
 
-                <!-- LinearLayout for likes, views, favorites -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="8dp">
-
-                    <!-- LinearLayout for favorites with icon -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_love"
-                            android:layout_marginEnd="4dp" />
-
-                        <TextView
-                            android:id="@+id/tvFavorites"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="100 Favorites" />
-                    </LinearLayout>
-
-                    <!-- LinearLayout for likes with icon -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_like"
-                            android:layout_marginEnd="4dp" />
-
-                        <TextView
-                            android:id="@+id/tvLikes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="100 Likes" />
-                    </LinearLayout>
-
-                    <!-- LinearLayout for views with icon -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_viewer"
-                            android:layout_marginEnd="4dp" />
-
-                        <TextView
-                            android:id="@+id/tvViewer"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="200 Views" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <!-- Button to read the book -->
-        <Button
-            android:id="@+id/btnReadBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Read Book" />
-
-        <!-- TextView for book description -->
-        <TextView
-            android:id="@+id/tvIntroduction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Book Description"
-            android:textSize="14sp" />
     </LinearLayout>
-</ScrollView>
+
+    <!-- Button to read the book -->
+    <Button
+        android:id="@+id/btnReadBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Read Book" />
+
+    <!-- Bottom navigation view for switching fragments -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menuBookDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#F16897"
+        app:menu="@menu/book_detail_navigation" />
+
+    <!-- FrameLayout to hold fragments -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

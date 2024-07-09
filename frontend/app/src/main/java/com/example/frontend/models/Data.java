@@ -1,6 +1,6 @@
 package com.example.frontend.models;
 
-import com.example.frontend.response.UserResponse;
+import com.example.frontend.responses.UserResponse;
 
 import java.util.List;
 
@@ -16,6 +16,15 @@ public class Data {
     public List<Book> getBooks() {
         return Books;
     }
+
+    // Getter and setter for Book
+    public Book getBook() {
+        if (Books != null && !Books.isEmpty()) {
+            return Books.get(0); // Assuming you are handling single book responses
+        }
+        return null;
+    }
+
 
     public void setBooks(List<Book> books) {
         Books = books;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
 import com.example.frontend.adapters.searchscreen.SearchBookAdapter;
-import com.example.frontend.response.PageableResponse;
-import com.example.frontend.response.PaginationResponse;
-import com.example.frontend.service.BookService;
+import com.example.frontend.networks.RetrofitClient;
+import com.example.frontend.responses.PaginationResponse;
+import com.example.frontend.services.BookService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +29,8 @@ public class BookFragment extends Fragment {
     private int currentPage;
     private int pageSize;
 
+    private BookService bookService;
+
     public String getQuery() {
         return query;
     }
@@ -42,6 +43,7 @@ public class BookFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book_search_screen, container, false);
+        bookService = RetrofitClient.getClient(view.getContext()).create(BookService.class);
         reViewFragmentBook = view.findViewById(R.id.reViewFragmentBook);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         reViewFragmentBook.setLayoutManager(manager);
@@ -62,7 +64,8 @@ public class BookFragment extends Fragment {
     }
 
     public void searchBooks(String query) {
-        BookService.bookService.searchBooksByName(query, currentPage, pageSize).enqueue(new Callback<PaginationResponse>() {
+        Call<PaginationResponse> responseCall = bookService.searchBooksByName(query, currentPage, pageSize);
+        responseCall.enqueue(new Callback<PaginationResponse>() {
             @Override
             public void onResponse(Call<PaginationResponse> call, Response<PaginationResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -74,8 +77,24 @@ public class BookFragment extends Fragment {
 
             @Override
             public void onFailure(Call<PaginationResponse> call, Throwable throwable) {
-
+                int a = 0;
             }
         });
+
+//        BookService.bookService.searchBooksByName(query, currentPage, pageSize).enqueue(new Callback<PaginationResponse>() {
+//            @Override
+//            public void onResponse(Call<PaginationResponse> call, Response<PaginationResponse> response) {
+//                if (response.isSuccessful() && response.body() != null) {
+//                    PaginationResponse paginationResponse = response.body();
+//                    adapter.addBooks(paginationResponse.getContent());
+//                    currentPage++;
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PaginationResponse> call, Throwable throwable) {
+//
+//            }
+//        });
     }
 }

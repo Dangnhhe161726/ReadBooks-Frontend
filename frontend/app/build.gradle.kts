@@ -44,7 +44,6 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.glide)
     implementation(libs.android.pdf.viewer)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
