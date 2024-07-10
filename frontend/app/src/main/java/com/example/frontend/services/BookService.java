@@ -19,6 +19,10 @@ public interface BookService {
     Call<PaginationResponse> searchBooksByName(@Query("name") String name,
                                                @Query("page") int page,
                                                @Query("size") int size);
+        @GET("book/trending")
+    Call<BookResponse> getBooksTrending();
         @GET("book/user/{id}")
     Call<BookResponse> getBooksByUserId(@Path("id") Long id);
+        @GET("book/new")
+    Call<BookResponse> getBooksNew();
 }

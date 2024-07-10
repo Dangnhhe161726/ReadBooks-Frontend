@@ -1,73 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    tools:context=".fragments.HomeFragment"
-    >
-    <!-- Top Authors Section -->
+    tools:context=".fragments.HomeFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="#FFF"
-        android:layout_gravity="top"
-        android:layout_marginTop="72dp"> <!-- Adjust the margin as needed to position below the header -->
+        android:orientation="vertical"
+        android:background="@drawable/background">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Top Authors"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:text="See all"
-            android:textColor="#FFA726"/>
-    </LinearLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:background="#FFF"
-        android:layout_gravity="top"
-        android:layout_marginTop="120dp"> <!-- Adjust the margin as needed to position below the top authors section -->
-
+        <!-- Top Authors Section -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="#FFF"
+            android:layout_marginTop="72dp"> <!-- Adjust the margin as needed to position below the header -->
 
-            <!-- Repeat this ImageView for each author -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_launcher_foreground"
-                android:background="@drawable/background"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top Authors"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
         </LinearLayout>
-    </HorizontalScrollView>
-    <!-- Category Tabs -->
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="#FFF"
-        android:layout_gravity="top"
-        android:layout_marginTop="200dp"> <!-- Adjust the margin as needed to position below the horizontal scroll view -->
 
-        <LinearLayout
-            android:id="@+id/categoryContainer"
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:padding="8dp"
+            android:background="#FFF"
+            android:layout_marginTop="0dp"> <!-- Adjust the margin as needed to position below the top authors section -->
+
+            <LinearLayout
+                android:id="@+id/authorContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+        <!-- Category Tabs -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="#FFF"
+            android:layout_marginTop="16dp"> <!-- Adjust the margin as needed to position below the authors section -->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,79 +59,83 @@
                 android:textSize="16sp"/>
         </LinearLayout>
 
-    </HorizontalScrollView>
-
-    <!-- Top Trending Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="#FFF"
-        android:layout_gravity="top"
-        android:layout_marginTop="270dp"> <!-- Adjust the margin as needed to position below the category tabs -->
-
-        <TextView
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Top Trending"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:padding="16dp"
+            android:background="#FFF"
+            android:layout_marginTop="0dp"> <!-- Adjust the margin as needed to position below the category section -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:text="See all"
-            android:textColor="#FFA726"/>
-    </LinearLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:background="#FFF"
-        android:layout_gravity="top"
-        android:layout_marginTop="320dp"> <!-- Adjust the margin as needed to position below the top trending section -->
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- Repeat this LinearLayout for each book -->
             <LinearLayout
-                android:layout_width="150dp"
+                android:id="@+id/categoryContainer"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:background="#FFF"
-                android:layout_marginEnd="16dp">
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/ic_launcher_foreground"/>
+        <!-- Top Trending Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="#FFF"
+            android:layout_marginTop="16dp"> <!-- Adjust the margin as needed to position below the category section -->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Apollo"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Zack Scott"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="$30.00"
-                    android:textColor="#FFA726"/>
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top Trending"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
         </LinearLayout>
-    </HorizontalScrollView>
 
-</FrameLayout>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="#FFF"
+            android:layout_marginTop="0dp"> <!-- Adjust the margin as needed to position below the top trending section -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTrendingBooks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="#FFF"/>
+        </HorizontalScrollView>
+
+        <!-- Top New Book Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="#FFF"
+            android:layout_marginTop="16dp"> <!-- Adjust the margin as needed to position below the top trending section -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top New Book"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="#FFF"
+            android:layout_marginTop="0dpdp"> <!-- Adjust the margin as needed to position below the top new book section -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewNewBooks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="#FFF"/>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+</ScrollView>
