@@ -15,4 +15,5 @@ import retrofit2.http.GET;
 public interface AuthorService {
     @GET("author")
     Call<AuthorResponse> getAuthors();
+
 }

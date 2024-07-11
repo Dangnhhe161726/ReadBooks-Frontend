@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation("jp.wasabeef:blurry:4.0.1")
     implementation("com.squareup.picasso:picasso:2.5.2")
     implementation("com.github.bumptech.glide:glide:5.0.0-rc01")
     implementation(libs.appcompat)

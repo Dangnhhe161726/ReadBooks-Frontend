@@ -3,6 +3,7 @@ package com.example.frontend.fragments;
 import static com.example.frontend.R.id.recyclerViewTrendingBooks;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
+import com.example.frontend.activities.BookDetailActivity;
 import com.example.frontend.adapters.BookshelfAdapter;
 import com.example.frontend.adapters.TopTrendBookAdapter;
+import com.example.frontend.event.OnBookClickListener;
 import com.example.frontend.models.Author;
 import com.example.frontend.models.Book;
 import com.example.frontend.models.Category;
@@ -67,8 +70,22 @@ public class HomeFragment extends Fragment {
         recyclerViewNewBook.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         bookListTrending = new ArrayList<>();
         newBooks = new ArrayList<>();
-        bookAdapter = new TopTrendBookAdapter(getContext(), bookListTrending);
-        newBookAdapter = new TopTrendBookAdapter(getContext(), newBooks);
+        bookAdapter = new TopTrendBookAdapter(getContext(), bookListTrending, new OnBookClickListener() {
+            @Override
+            public void onBookClick(Book book) {
+                Intent intent = new Intent(getContext(), BookDetailActivity.class);
+                intent.putExtra("BOOK_ID", String.valueOf(book.getId()));
+                startActivity(intent);
+            }
+        });
+        newBookAdapter = new TopTrendBookAdapter(getContext(), newBooks, new OnBookClickListener() {
+            @Override
+            public void onBookClick(Book book) {
+                Intent intent = new Intent(getContext(), BookDetailActivity.class);
+                intent.putExtra("BOOK_ID", String.valueOf(book.getId()));
+                startActivity(intent);
+            }
+        });
         recyclerViewTrendingBooks.setAdapter(bookAdapter);
         recyclerViewNewBook.setAdapter(newBookAdapter);
         bookService = RetrofitClient.getClient(view.getContext()).create(BookService.class);

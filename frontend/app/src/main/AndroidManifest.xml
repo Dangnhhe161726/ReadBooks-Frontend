@@ -24,6 +24,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".activities.BookDetailActivity"
+            android:exported="true" />
 
         <activity
             android:name=".activities.SearchActivity"

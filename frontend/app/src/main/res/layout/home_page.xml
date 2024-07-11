@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:background="#FFF"
-            android:layout_marginTop="0dpdp"> <!-- Adjust the margin as needed to position below the top new book section -->
+            android:layout_marginTop="0dp"> <!-- Adjust the margin as needed to position below the top new book section -->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewNewBooks"

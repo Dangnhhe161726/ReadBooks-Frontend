@@ -25,4 +25,7 @@ public interface BookService {
     Call<BookResponse> getBooksByUserId(@Path("id") Long id);
         @GET("book/new")
     Call<BookResponse> getBooksNew();
+
+    @GET("book/{id}")
+    Call<BookResponse> getBookById(@Path("id") Long id);
 }

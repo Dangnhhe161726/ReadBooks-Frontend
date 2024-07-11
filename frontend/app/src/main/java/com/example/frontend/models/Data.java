@@ -8,8 +8,16 @@ public class Data {
     private List<Category> Category;
     private List<Book> Books;
     private List<Author> Authors;
-
+    private Book Book;
     private ProductPage productPage;
+
+    public Book getBook() {
+        return Book;
+    }
+
+    public void setBook(Book book) {
+        this.Book = book;
+    }
 
     public ProductPage getProductPage() {
         return productPage;
