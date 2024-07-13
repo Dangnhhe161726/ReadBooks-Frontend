@@ -38,11 +38,8 @@ public class BookDetailActivity extends AppCompatActivity {
     private static final int MAX_LENGTH = 100;
     private ImageView bookCover;
     private ImageView bookCoverBlur;
-
     private CommentsAdapter commentsAdapter;
-
     private List<FeedBack> commentList;
-
     private TextView bookTitle, bookAuthor, comments_title, bookDescription;
     private LinearLayout tagContainer;
     private RecyclerView commentRecyclerView;
@@ -60,15 +57,16 @@ public class BookDetailActivity extends AppCompatActivity {
         comments_title = findViewById(R.id.comments_title);
         bookDescription = findViewById(R.id.book_description);
         tagContainer = findViewById(R.id.tag_container);
+
         // Retrieve the book ID from the intent
         commentList = new ArrayList<>();
         String bookId = getIntent().getStringExtra("BOOK_ID");
         bookService = RetrofitClient.getClient(this).create(BookService.class);
         commentsAdapter = new CommentsAdapter(this, commentList);
         commentRecyclerView.setAdapter(commentsAdapter);
+
         if (bookId != null) {
             fetchBookDetails(Long.parseLong(bookId));
-
         }
     }
 
@@ -82,6 +80,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     Book book = response.body().getData().getBook();
                     Log.i("API Response", book.toString());
+
                     Glide.with(BookDetailActivity.this).load(book.getThumbnail()).into(bookCover);
                     Picasso.get().load(book.getThumbnail()).into(bookCoverBlur, new com.squareup.picasso.Callback() {
                         @Override
@@ -106,39 +105,48 @@ public class BookDetailActivity extends AppCompatActivity {
 
                     bookTitle.setText(book.getName());
                     bookAuthor.setText(book.getAuthor().getName());
-                    commentList.clear();
-                    int maxComments = Math.min(book.getFeedbacks().size(), 4);
-                    for (int i = 0; i < maxComments; i++) {
-                        commentList.add(book.getFeedbacks().get(i));
-                    }
-                    commentsAdapter.notifyDataSetChanged();
-                    commentsAdapter.notifyDataSetChanged();
-                    String fullText = book.getIntroduce();
-                    if (book.getIntroduce().length() > MAX_LENGTH) {
-                        bookDescription.setText(fullText.substring(0, MAX_LENGTH) + "...");
+
+                    if (book.getFeedbacks() != null) {
+                        commentList.clear();
+                        int maxComments = Math.min(book.getFeedbacks().size(), 4);
+                        for (int i = 0; i < maxComments; i++) {
+                            commentList.add(book.getFeedbacks().get(i));
+                        }
+                        commentsAdapter.notifyDataSetChanged();
                     } else {
-                        bookDescription.setText(fullText);
+                        Log.e("API Error", "Feedback list is null");
                     }
 
-                    bookDescription.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (isExpanded) {
-                                if (fullText.length() > MAX_LENGTH) {
-                                    bookDescription.setText(fullText.substring(0, MAX_LENGTH) + "...");
+                    String fullText = book.getIntroduce();
+                    if (fullText != null) {
+                        if (fullText.length() > MAX_LENGTH) {
+                            bookDescription.setText(fullText.substring(0, MAX_LENGTH) + "...");
+                        } else {
+                            bookDescription.setText(fullText);
+                        }
+
+                        bookDescription.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (isExpanded) {
+                                    if (fullText.length() > MAX_LENGTH) {
+                                        bookDescription.setText(fullText.substring(0, MAX_LENGTH) + "...");
+                                    } else {
+                                        bookDescription.setText(fullText);
+                                    }
+                                    bookDescription.setMaxLines(fullText.length());
+                                    bookDescription.setEllipsize(TextUtils.TruncateAt.END);
                                 } else {
                                     bookDescription.setText(fullText);
+                                    bookDescription.setMaxLines(fullText.length());
+                                    bookDescription.setEllipsize(null);
                                 }
-                                bookDescription.setMaxLines(fullText.length());
-                                bookDescription.setEllipsize(TextUtils.TruncateAt.END);
-                            } else {
-                                bookDescription.setText(fullText);
-                                bookDescription.setMaxLines(fullText.length());
-                                bookDescription.setEllipsize(null);
+                                isExpanded = !isExpanded;
                             }
-                            isExpanded = !isExpanded;
-                        }
-                    });
+                        });
+                    } else {
+                        Log.e("API Error", "Book introduction is null");
+                    }
                 } else {
                     Log.e("API Error", "Response Code: " + response.code());
                 }
