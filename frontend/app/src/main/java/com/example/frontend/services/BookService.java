@@ -3,6 +3,7 @@ package com.example.frontend.services;
 import com.example.frontend.networks.UnsafeOkHttpClient;
 import com.example.frontend.responses.BookResponse;
 import com.example.frontend.responses.PaginationResponse;
+import com.example.frontend.responses.UrlResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -19,13 +20,19 @@ public interface BookService {
     Call<PaginationResponse> searchBooksByName(@Query("name") String name,
                                                @Query("page") int page,
                                                @Query("size") int size);
-        @GET("book/trending")
+
+    @GET("book/trending")
     Call<BookResponse> getBooksTrending();
-        @GET("book/user/{id}")
+
+    @GET("book/user/{id}")
     Call<BookResponse> getBooksByUserId(@Path("id") Long id);
-        @GET("book/new")
+
+    @GET("book/new")
     Call<BookResponse> getBooksNew();
 
     @GET("book/{id}")
     Call<BookResponse> getBookById(@Path("id") Long id);
+
+    @GET("images/download-from-amazon")
+    Call<UrlResponse> getFileBookToAws(@Query("fileName") String fileName);
 }
