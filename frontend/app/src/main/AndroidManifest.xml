@@ -35,8 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.BookDetailActivity"
-            android:exported="true" />
-
+            android:exported="false" />
         <activity
             android:name=".activities.SearchActivity"
             android:exported="false" />
@@ -45,7 +44,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
