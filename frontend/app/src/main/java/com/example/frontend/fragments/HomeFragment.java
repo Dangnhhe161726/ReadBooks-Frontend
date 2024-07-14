@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onBookClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);
-                intent.putExtra("BOOK_ID", String.valueOf(book.getId()));
+                intent.putExtra("BOOK_ID", book.getId());
                 startActivity(intent);
             }
         });
@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onBookClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);
-                intent.putExtra("BOOK_ID", String.valueOf(book.getId()));
+                intent.putExtra("BOOK_ID", book.getId());
                 startActivity(intent);
             }
         });

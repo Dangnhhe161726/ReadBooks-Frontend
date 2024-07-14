@@ -21,7 +21,7 @@ public class Book {
     private boolean status;
     private Author author;
     private List<Category> categories;
-
+    private List<BookMark> bookMarks;
     public List<FeedBack> getFeedbacks() {
         return feedbacks;
     }
@@ -31,37 +31,6 @@ public class Book {
     }
 
     public Book() {
-    }
-
-    public Book(Long id, String name, String link, int view, int favorites, String thumbnail, Date createTime, Date updateTime, String introduce, List<FeedBack> feedbacks, boolean status, Author author, List<Category> categories) {
-        this.id = id;
-        this.name = name;
-        this.link = link;
-        this.view = view;
-        this.favorites = favorites;
-        this.thumbnail = thumbnail;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.introduce = introduce;
-        this.feedbacks = feedbacks;
-        this.status = status;
-        this.author = author;
-        this.categories = categories;
-    }
-
-    public Book(Long id, String name, String link, int view, int favorites, String thumbnail, Date createTime, Date updateTime, String introduce, boolean status, Author author, List<Category> categories) {
-        this.id = id;
-        this.name = name;
-        this.link = link;
-        this.view = view;
-        this.favorites = favorites;
-        this.thumbnail = thumbnail;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.introduce = introduce;
-        this.status = status;
-        this.author = author;
-        this.categories = categories;
     }
 
     public Long getId() {
@@ -158,6 +127,14 @@ public class Book {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public List<BookMark> getBookMarks() {
+        return bookMarks;
+    }
+
+    public void setBookMarks(List<BookMark> bookMarks) {
+        this.bookMarks = bookMarks;
     }
 
     @Override

@@ -25,6 +25,12 @@
             android:name=".activities.DetailedProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.MenuBookMarkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ReadFileBookActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
@@ -32,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".activities.BookDetailActivity"
             android:exported="true" />
@@ -40,12 +46,12 @@
         <activity
             android:name=".activities.SearchActivity"
             android:exported="false" />
+
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
