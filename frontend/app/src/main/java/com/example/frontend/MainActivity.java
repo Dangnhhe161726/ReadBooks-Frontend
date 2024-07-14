@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        if (savedInstanceState == null) {
+            loadFragment(new HomeFragment(), true);
+        }
     }
     private void loadFragment(Fragment fragment, boolean isInit) {
         FragmentManager fragmentManager = getSupportFragmentManager();

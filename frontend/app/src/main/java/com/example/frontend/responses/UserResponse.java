@@ -2,9 +2,10 @@ package com.example.frontend.responses;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class UserResponse {
+public class UserResponse implements Serializable {
     public long getId() {
         return id;
     }
