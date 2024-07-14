@@ -13,8 +13,9 @@ import retrofit2.http.Path;
 
 public interface BookMarkService {
 
-    @GET("bookmark/book/{bookId}")
-    Call<DataResponse> getBookById(@Path("bookId") Long bookId);
+    @GET("bookmark/book/{bookId}/{userId}")
+    Call<DataResponse> getBookById(@Path("bookId") Long bookId,
+    @Path("userId") Long userId);
 
     @POST("bookmark/create")
     Call<DataResponse> create(@Body BookMarkRequest bookMarkRequest);

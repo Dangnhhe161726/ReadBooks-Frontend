@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
 import com.example.frontend.adapters.searchscreen.SearchBookAdapter;
+import com.example.frontend.models.Book;
 import com.example.frontend.networks.RetrofitClient;
 import com.example.frontend.responses.PaginationResponse;
 import com.example.frontend.services.BookService;
@@ -22,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookFragment extends Fragment {
+public class BookFragment extends Fragment implements SearchBookAdapter.SearchBookItemListener{
 
     private RecyclerView reViewFragmentBook;
     private SearchBookAdapter adapter;
@@ -51,6 +52,7 @@ public class BookFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         reViewFragmentBook.setLayoutManager(manager);
         adapter = new SearchBookAdapter();
+        adapter.setSearchBookItemListener(this::onItemClick);
         reViewFragmentBook.setAdapter(adapter);
         currentPage = 0;
         pageSize = 5;
@@ -92,5 +94,11 @@ public class BookFragment extends Fragment {
                 Toast.makeText(getContext(), "Failed to load book", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Book clickedBook = adapter.getBooks().get(position);
+        Toast.makeText(view.getContext(), "Clicked: " + clickedBook.getName(), Toast.LENGTH_SHORT).show();
     }
 }

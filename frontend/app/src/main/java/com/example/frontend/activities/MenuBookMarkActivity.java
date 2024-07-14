@@ -37,6 +37,7 @@ public class MenuBookMarkActivity extends AppCompatActivity {
     private String bookUrl;
     private Long bookId;
     private String bookName;
+    private Long userId;
     private BookMarkService bookMarkService;
 
     @Override
@@ -50,8 +51,8 @@ public class MenuBookMarkActivity extends AppCompatActivity {
         bookUrl = getIntent().getStringExtra("BOOK_URL");
         bookId = getIntent().getLongExtra("BOOK_ID", -1);
         bookName = getIntent().getStringExtra("BOOK_NAME");
-
-        if (bookUrl != null && bookId != -1) {
+        userId = getIntent().getLongExtra("USER_ID", -1);
+        if (bookUrl != null && bookId != -1 && userId != -1) {
             loadData();
             btnExit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,7 +75,7 @@ public class MenuBookMarkActivity extends AppCompatActivity {
         }
 
         bookMarkService = RetrofitClient.getClient(this).create(BookMarkService.class);
-        Call<DataResponse> call = bookMarkService.getBookById(bookId);
+        Call<DataResponse> call = bookMarkService.getBookById(bookId, userId);
         call.enqueue(new Callback<DataResponse>() {
             @Override
             public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {

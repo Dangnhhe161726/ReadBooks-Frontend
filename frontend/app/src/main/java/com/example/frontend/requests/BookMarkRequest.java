@@ -4,6 +4,7 @@ public class BookMarkRequest {
     private String name;
     private int pageNumber;
     private Long bookId;
+    private Long userId;
 
     public BookMarkRequest() {
     }
@@ -30,5 +31,13 @@ public class BookMarkRequest {
 
     public void setBookId(Long bookId) {
         this.bookId = bookId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

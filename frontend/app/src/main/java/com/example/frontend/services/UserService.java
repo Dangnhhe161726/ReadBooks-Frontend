@@ -3,6 +3,7 @@ package com.example.frontend.services;
 import com.example.frontend.networks.UnsafeOkHttpClient;
 import com.example.frontend.requests.LoginRequest;
 import com.example.frontend.requests.RegisterRequest;
+import com.example.frontend.responses.DataResponse;
 import com.example.frontend.responses.LoginResponse;
 import com.example.frontend.responses.RegisterResponse;
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface UserService {
@@ -34,4 +36,7 @@ public interface UserService {
 
     @POST("auth/register")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
+
+    @GET("auth/userinfo")
+    Call<DataResponse> getUserInfor();
 }

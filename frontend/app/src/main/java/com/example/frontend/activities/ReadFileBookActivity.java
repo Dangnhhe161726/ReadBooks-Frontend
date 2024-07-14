@@ -19,10 +19,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.frontend.R;
 import com.example.frontend.models.BookMark;
+import com.example.frontend.models.UserByToken;
 import com.example.frontend.networks.RetrofitClient;
 import com.example.frontend.requests.BookMarkRequest;
 import com.example.frontend.responses.DataResponse;
 import com.example.frontend.services.BookMarkService;
+import com.example.frontend.services.UserService;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;
@@ -48,6 +50,8 @@ public class ReadFileBookActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
     private BookMarkService bookMarkService;
     private int currentPage = 0;
+    private UserService userService;
+    private UserByToken user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,20 @@ public class ReadFileBookActivity extends AppCompatActivity {
         btnMenuBookMark = findViewById(R.id.btnMenuBookMark);
         relativeLayout = findViewById(R.id.relativeLayout);
         bookMarkService = RetrofitClient.getClient(this).create(BookMarkService.class);
+        userService = RetrofitClient.getClient(this).create(UserService.class);
+        Call<DataResponse> call = userService.getUserInfor();
+        call.enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    user = response.body().getData().getUserByToken();
+                }
+            }
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+                Log.e("API Error", "Failure: " + t.getMessage());
+            }
+        });
     }
 
     private void viewBookMark() {
@@ -90,6 +108,7 @@ public class ReadFileBookActivity extends AppCompatActivity {
                 intent.putExtra("BOOK_URL", bookUrl);
                 intent.putExtra("BOOK_ID", bookId);
                 intent.putExtra("BOOK_NAME", bookName);
+                intent.putExtra("USER_ID", user.getId());
                 startActivity(intent);
             }
         });
@@ -102,6 +121,7 @@ public class ReadFileBookActivity extends AppCompatActivity {
 
                 BookMarkRequest bookMark = new BookMarkRequest();
                 bookMark.setBookId(bookId);
+                bookMark.setUserId(user.getId());
                 if (bookName != null) {
                     bookMark.setName(bookName + "_" + currentPage);
                 } else {

@@ -15,8 +15,17 @@ public class Data {
     private String url;
     private BookMark bookMark;
     private List<BookMark> bookMarks;
+    private UserByToken userByToken;
 
     public Data() {
+    }
+
+    public UserByToken getUserByToken() {
+        return userByToken;
+    }
+
+    public void setUserByToken(UserByToken userByToken) {
+        this.userByToken = userByToken;
     }
 
     public BookMark getBookMark() {
