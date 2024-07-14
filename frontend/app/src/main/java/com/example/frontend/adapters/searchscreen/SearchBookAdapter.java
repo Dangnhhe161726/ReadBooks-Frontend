@@ -61,18 +61,23 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
         holder.tvNameISearch.setText(book.getName());
         holder.tvAuthorISearch.setText(book.getAuthor().getName());
         holder.tvFavoritesISearch.setText(String.format("%d", book.getFavorites()));
-        if(book.getCategories() == null){
+        if (book.getCategories() == null) {
             holder.btnCategoryISearch.setText("Uncategorized yet");
-        }else {
+        } else {
             holder.btnCategoryISearch.setText(book.getCategories().get(0).getName());
         }
     }
 
     public void addBooks(List<Book> bookList) {
-        if(bookList != null){
+        if (bookList != null) {
             books.addAll(bookList);
             notifyDataSetChanged();
         }
+    }
+
+    public void clearBooks() {
+        books.clear();
+        notifyDataSetChanged();
     }
 
     @Override

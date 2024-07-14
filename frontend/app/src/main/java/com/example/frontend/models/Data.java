@@ -7,6 +7,34 @@ import java.util.List;
 public class Data {
     private List<Category> Category;
     private List<Book> Books;
+    private List<Author> Authors;
+    private Book Book;
+    private ProductPage productPage;
+
+    public Book getBook() {
+        return Book;
+    }
+
+    public void setBook(Book book) {
+        this.Book = book;
+    }
+
+    public ProductPage getProductPage() {
+        return productPage;
+    }
+
+    public void setProductPage(ProductPage productPage) {
+        this.productPage = productPage;
+    }
+
+    public List<Author> getAuthors() {
+        return Authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.Authors = authors;
+    }
+
     private String Token;
     private UserResponse user;
 

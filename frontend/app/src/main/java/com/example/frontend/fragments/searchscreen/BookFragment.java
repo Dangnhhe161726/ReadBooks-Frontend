@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,8 @@ public class BookFragment extends Fragment {
 
     public void setQuery(String query) {
         this.query = query;
+        resetSearch();
+        searchBooks(query);
     }
 
     @Nullable
@@ -50,51 +53,44 @@ public class BookFragment extends Fragment {
         adapter = new SearchBookAdapter();
         reViewFragmentBook.setAdapter(adapter);
         currentPage = 0;
-        pageSize = 1;
-        reViewFragmentBook.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (!reViewFragmentBook.canScrollVertically(1)) {
-                    searchBooks(query);
-                }
-            }
-        });
+        pageSize = 5;
         return view;
     }
 
-    public void searchBooks(String query) {
+    private void resetSearch() {
+        currentPage = 0;
+        adapter.clearBooks();
+        reViewFragmentBook.scrollToPosition(0);
+        reViewFragmentBook.clearOnScrollListeners();
+    }
+
+    private void searchBooks(String query) {
         Call<PaginationResponse> responseCall = bookService.searchBooksByName(query, currentPage, pageSize);
         responseCall.enqueue(new Callback<PaginationResponse>() {
             @Override
             public void onResponse(Call<PaginationResponse> call, Response<PaginationResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     PaginationResponse paginationResponse = response.body();
-                    adapter.addBooks(paginationResponse.getContent());
-                    currentPage++;
+                    if (paginationResponse.getContent().size() != 0) {
+                        adapter.addBooks(paginationResponse.getContent());
+                        currentPage++;
+                        reViewFragmentBook.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                            @Override
+                            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                                super.onScrolled(recyclerView, dx, dy);
+                                if (!reViewFragmentBook.canScrollVertically(1)) {
+                                    searchBooks(query);
+                                }
+                            }
+                        });
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<PaginationResponse> call, Throwable throwable) {
-                int a = 0;
+                Toast.makeText(getContext(), "Failed to load book", Toast.LENGTH_LONG).show();
             }
         });
-
-//        BookService.bookService.searchBooksByName(query, currentPage, pageSize).enqueue(new Callback<PaginationResponse>() {
-//            @Override
-//            public void onResponse(Call<PaginationResponse> call, Response<PaginationResponse> response) {
-//                if (response.isSuccessful() && response.body() != null) {
-//                    PaginationResponse paginationResponse = response.body();
-//                    adapter.addBooks(paginationResponse.getContent());
-//                    currentPage++;
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<PaginationResponse> call, Throwable throwable) {
-//
-//            }
-//        });
     }
 }
