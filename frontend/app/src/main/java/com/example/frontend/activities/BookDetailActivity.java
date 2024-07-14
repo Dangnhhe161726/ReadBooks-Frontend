@@ -1,14 +1,17 @@
 package com.example.frontend.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +24,7 @@ import com.example.frontend.models.Book;
 import com.example.frontend.models.FeedBack;
 import com.example.frontend.networks.RetrofitClient;
 import com.example.frontend.responses.BookResponse;
+import com.example.frontend.responses.UrlResponse;
 import com.example.frontend.services.BookService;
 import com.squareup.picasso.Picasso;
 
@@ -43,11 +47,13 @@ public class BookDetailActivity extends AppCompatActivity {
     private TextView bookTitle, bookAuthor, comments_title, bookDescription;
     private LinearLayout tagContainer;
     private RecyclerView commentRecyclerView;
-
+    private Button btnStarReading;
+    private Book book;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bookdetail_layout);
+        book = new Book();
         bookCoverBlur = findViewById(R.id.blurred_background);
         bookTitle = findViewById(R.id.book_title);
         bookCover = findViewById(R.id.book_cover);
@@ -57,16 +63,48 @@ public class BookDetailActivity extends AppCompatActivity {
         comments_title = findViewById(R.id.comments_title);
         bookDescription = findViewById(R.id.book_description);
         tagContainer = findViewById(R.id.tag_container);
-
+        btnStarReading = findViewById(R.id.btn_start_reading);
         // Retrieve the book ID from the intent
         commentList = new ArrayList<>();
-        String bookId = getIntent().getStringExtra("BOOK_ID");
+        Long bookId = getIntent().getLongExtra("BOOK_ID", -1);
         bookService = RetrofitClient.getClient(this).create(BookService.class);
         commentsAdapter = new CommentsAdapter(this, commentList);
         commentRecyclerView.setAdapter(commentsAdapter);
 
-        if (bookId != null) {
-            fetchBookDetails(Long.parseLong(bookId));
+        if (bookId != -1) {
+            fetchBookDetails(bookId);
+        }
+
+        //Star event read book
+        btnStarReading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetchFileBook();
+            }
+        });
+    }
+
+    private void fetchFileBook() {
+        if(book != null && !book.getLink().isEmpty()){
+            Call<UrlResponse> call = bookService.getFileBookToAws(book.getLink());
+            call.enqueue(new Callback<UrlResponse>() {
+                @Override
+                public void onResponse(Call<UrlResponse> call, Response<UrlResponse> response) {
+                    if(response.isSuccessful() && response.body() != null){
+                        String url = response.body().getData().getUrl();
+                        Intent intent = new Intent(BookDetailActivity.this, ReadFileBookActivity.class);
+                        intent.putExtra("BOOK_URL", url);
+                        intent.putExtra("BOOK_ID", book.getId());
+                        intent.putExtra("BOOK_NAME", book.getName());
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UrlResponse> call, Throwable t) {
+                    Log.e("API Error", "Failure: " + t.getMessage());
+                }
+            });
         }
     }
 
@@ -78,7 +116,7 @@ public class BookDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Book book = response.body().getData().getBook();
+                    book = response.body().getData().getBook();
                     Log.i("API Response", book.toString());
 
                     Glide.with(BookDetailActivity.this).load(book.getThumbnail()).into(bookCover);

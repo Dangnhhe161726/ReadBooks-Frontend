@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,6 +86,7 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
         return books.size();
     }
 
+
     public interface SearchBookItemListener {
         void onItemClick(View view, int position);
     }
@@ -101,8 +103,14 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
             tvAuthorISearch = view.findViewById(R.id.tvAuthorISearch);
             tvFavoritesISearch = view.findViewById(R.id.tvFavoritesISearch);
             btnCategoryISearch = view.findViewById(R.id.btnCategoryISearch);
-            btnCategoryISearch.setOnClickListener(this);
+            btnCategoryISearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
+
 
         @Override
         public void onClick(View v) {
