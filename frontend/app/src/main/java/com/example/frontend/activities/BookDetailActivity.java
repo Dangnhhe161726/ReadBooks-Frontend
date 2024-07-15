@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.frontend.MainActivity;
 import com.example.frontend.R;
 import com.example.frontend.adapters.CommentsAdapter;
 import com.example.frontend.models.Book;
@@ -64,6 +65,8 @@ public class BookDetailActivity extends AppCompatActivity {
         bookDescription = findViewById(R.id.book_description);
         tagContainer = findViewById(R.id.tag_container);
         btnStarReading = findViewById(R.id.btn_start_reading);
+        Button btnAddToShelf = findViewById(R.id.btn_add_to_shelf);
+
         // Retrieve the book ID from the intent
         commentList = new ArrayList<>();
         Long bookId = getIntent().getLongExtra("BOOK_ID", -1);
@@ -82,8 +85,40 @@ public class BookDetailActivity extends AppCompatActivity {
                 fetchFileBook();
             }
         });
+
+        btnAddToShelf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               addBookShelf(MainActivity.userId,bookId);// Replace with actual
+            }
+        });
     }
 
+
+    private void addBookShelf(Long userId, Long bookId) {
+        if (book != null && !book.getLink().isEmpty()) {
+            Call<BookResponse> call = bookService.addBookShelf(userId, bookId);
+            call.enqueue(new Callback<BookResponse>() {
+                @Override
+                public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(BookDetailActivity.this, "Add successfully!!!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Handle unsuccessful response (e.g., HTTP error codes)
+                        Toast.makeText(BookDetailActivity.this, "This Book already added!!!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<BookResponse> call, Throwable t) {
+                    // Handle failure, typically due to network issues
+                    Toast.makeText(BookDetailActivity.this, "Failed to add book: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(BookDetailActivity.this, "Book details are not available or invalid.", Toast.LENGTH_SHORT).show();
+        }
+    }
     private void fetchFileBook() {
         if(book != null && !book.getLink().isEmpty()){
             Call<UrlResponse> call = bookService.getFileBookToAws(book.getLink());
