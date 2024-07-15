@@ -11,36 +11,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.frontend.R;
 import com.example.frontend.event.OnBookClickListener;
 import com.example.frontend.models.Book;
-import com.example.frontend.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class BookshelfAdapter extends RecyclerView.Adapter<BookshelfAdapter.BookViewHolder> {
+public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.BookViewHolder>{
     private List<Book> bookList;
     private Context context;
     private OnBookClickListener listener;
 
-
-
-
-
-    public BookshelfAdapter(Context context,List<Book> bookList,OnBookClickListener listener) {
+    public NewBookAdapter(Context context,List<Book> bookList,OnBookClickListener listener) {
         this.context = context;
         this.listener = listener;
         this.bookList = bookList;
     }
     @NonNull
     @Override
-    public BookshelfAdapter.BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_book, parent, false);
-        return new BookViewHolder(view);
+    public NewBookAdapter.BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_book_new, parent, false);
+        return new NewBookAdapter.BookViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewBookAdapter.BookViewHolder holder, int position) {
         Book book = bookList.get(position);
 
         holder.bind(book, listener);
