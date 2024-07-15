@@ -15,13 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.frontend.R;
 import com.example.frontend.activities.BookDetailActivity;
 import com.example.frontend.adapters.BookshelfAdapter;
-import com.example.frontend.adapters.TopTrendBookAdapter;
+import com.example.frontend.adapters.NewBookAdapter;
 import com.example.frontend.event.OnBookClickListener;
 import com.example.frontend.models.Book;
 import com.example.frontend.models.UserByToken;
 import com.example.frontend.networks.RetrofitClient;
 import com.example.frontend.responses.BookResponse;
-import com.example.frontend.responses.DataResponse;
 import com.example.frontend.services.BookService;
 import com.example.frontend.services.UserService;
 
@@ -32,57 +31,56 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyBookFragment extends Fragment {
-    BookshelfAdapter adapter;
+public class NewBooksFragment extends Fragment {
+    NewBooksFragment adapter;
     private RecyclerView recyclerView;
-    private BookshelfAdapter bookAdapter;
+    private NewBookAdapter bookAdapter;
     private BookService bookService;
     private UserService userService;
     List<Book> bookList;
+    List<Book> newBooks;
     private UserByToken user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bookshelf_screen, container, false);
+        View view = inflater.inflate(R.layout.fragment_newbooks, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         recyclerView.setLayoutManager(gridLayoutManager);
-        bookList = new ArrayList<>();
-        bookAdapter = new BookshelfAdapter(getContext(), bookList, new OnBookClickListener() {
+        newBooks = new ArrayList<>();
+        bookAdapter = new NewBookAdapter(getContext(), newBooks, new OnBookClickListener() {
             @Override
             public void onBookClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);
                 intent.putExtra("BOOK_ID", book.getId());
                 startActivity(intent);
             }
-        });        recyclerView.setAdapter(bookAdapter);
-        userService = RetrofitClient.getClient(view.getContext()).create(UserService.class);
+        });
+        recyclerView.setAdapter(bookAdapter);
         bookService = RetrofitClient.getClient(view.getContext()).create(BookService.class);
-        getUser();
+        fetchNewBooks();
         return view;
     }
 
-    private void getUser() {
-        Call<DataResponse> call = userService.getUserInfor();
-
-        call.enqueue(new Callback<DataResponse>() {
+    private void fetchNewBooks() {
+        // Make an API call to fetch new books and update the adapter
+        Call<BookResponse> call = bookService.getBooksNew();
+        call.enqueue(new Callback<BookResponse>() {
             @Override
-            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
-                if(response.isSuccessful() && response.body() != null){
-                    user = response.body().getData().getUserByToken();
-                    if (user != null) {
-                        fetchBooks(user.getId());
-                    } else {
-                        Log.e("API Error", "User is null");
-                    }
+            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Book> books = response.body().getData().getProductPage().getContent();
+                    newBooks.clear();
+                    newBooks.addAll(books);
+                    bookAdapter.notifyDataSetChanged();
                 } else {
-                    Log.e("API Error", "Failed to get user info: " + response.message());
+                    Log.e("API Error", "Response Code: " + response.code());
                 }
             }
 
             @Override
-            public void onFailure(Call<DataResponse> call, Throwable t) {
+            public void onFailure(Call<BookResponse> call, Throwable t) {
                 Log.e("API Error", "Failure: " + t.getMessage());
             }
         });

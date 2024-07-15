@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.frontend.fragments.HomeFragment;
+import com.example.frontend.fragments.HomePageFragment;
 import com.example.frontend.fragments.MyBookFragment;
 import com.example.frontend.fragments.MyProfileFragment;
 import com.example.frontend.fragments.searchscreen.SearchFragment;
@@ -28,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavView);
         frameLayout = findViewById(R.id.fragmentContainer);
         if (savedInstanceState == null) {
-            loadFragment(new HomeFragment(), true);
+            loadFragment(new HomePageFragment(), true);
         }
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.navHome) {
-                    loadFragment(new HomeFragment(), false);
+                    loadFragment(new HomePageFragment(), false);
                 } else if (itemId == R.id.navSearch) {
                     loadFragment(new SearchFragment(), false);
                 } else if (itemId == R.id.navMyBook) {
@@ -46,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        if (savedInstanceState == null) {
-            loadFragment(new HomeFragment(), true);
-        }
     }
     private void loadFragment(Fragment fragment, boolean isInit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
