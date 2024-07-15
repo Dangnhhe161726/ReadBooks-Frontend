@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.frontend.MainActivity;
+import com.example.frontend.activities.MainActivity;
 import com.example.frontend.R;
 import com.example.frontend.adapters.CommentsAdapter;
 import com.example.frontend.models.Book;

@@ -52,11 +52,13 @@ public class DetailedProfileActivity extends AppCompatActivity {
             phoneNumberEditText.setText(userProfile.getPhoneNumber());
             addressEditText.setText(userProfile.getAddress());
 
-            // Chuyển đổi định dạng ngày từ yyyy-MM-dd sang dd/MM/yyyy
-            String formattedDob = formatDate(userProfile.getDob().toString(), "yyyy-MM-dd", "dd/MM/yyyy");
-            dobEditText.setText(formattedDob);
+            if (userProfile.getDob() != null) {
+                String formattedDob = formatDate(userProfile.getDob().toString(), "yyyy-MM-dd", "dd/MM/yyyy");
+                dobEditText.setText(formattedDob);
+            } else {
+                dobEditText.setText("");
+            }
 
-            // Đặt giới tính từ userProfile
             if (userProfile.isGender()) {
                 genderRadioGroup.check(R.id.rb_male);
             } else {
@@ -64,11 +66,12 @@ public class DetailedProfileActivity extends AppCompatActivity {
             }
         }
 
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                finish(); // Đóng DetailedProfileActivity
+                finish();
             }
         });
 
