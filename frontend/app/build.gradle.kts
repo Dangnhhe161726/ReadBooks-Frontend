@@ -1,5 +1,7 @@
 plugins {
+//    id("com.android.application")
     alias(libs.plugins.androidApplication)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -12,7 +14,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,6 +33,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.circleimageview)
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.database)
     implementation(libs.blurry)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -43,6 +48,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.picasso)
     implementation(libs.glide)
+    implementation(libs.threetenabp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

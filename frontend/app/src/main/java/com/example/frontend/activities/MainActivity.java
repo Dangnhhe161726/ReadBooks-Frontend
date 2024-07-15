@@ -1,4 +1,4 @@
-package com.example.frontend;
+package com.example.frontend.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.frontend.R;
 import com.example.frontend.fragments.HomeFragment;
 import com.example.frontend.fragments.MyBookFragment;
 import com.example.frontend.fragments.MyProfileFragment;
+import com.example.frontend.fragments.notificationscreen.NotificationFragment;
 import com.example.frontend.fragments.searchscreen.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new SearchFragment(), false);
                 } else if (itemId == R.id.navMyBook) {
                     loadFragment(new MyBookFragment(), false);
+                } else if(itemId == R.id.navNotificationBook){
+                    loadFragment(new NotificationFragment(), false);
                 } else {
                     loadFragment(new MyProfileFragment(), false);
                 }
