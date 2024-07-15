@@ -20,6 +20,12 @@
             android:name=".activities.ChangeAvaActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.CategoryDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BookAuthorActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ChangePasswordActivity"
             android:exported="false" />
         <activity

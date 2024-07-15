@@ -37,6 +37,8 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.database)
+    implementation("androidx.fragment:fragment:1.3.6")
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation(libs.blurry)
     implementation(libs.appcompat)
     implementation(libs.material)
