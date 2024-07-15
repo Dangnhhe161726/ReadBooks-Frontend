@@ -181,9 +181,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     private void responseDataFail(Throwable throwable, String mess) {
         Log.e("API Error", "onFailure: ", throwable);
         Toast toast = Toast.makeText(LoginActivity.this, mess, Toast.LENGTH_LONG);
