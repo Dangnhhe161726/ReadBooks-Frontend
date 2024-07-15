@@ -31,7 +31,7 @@ public interface BookService {
     Call<BookResponse> getBooksNew();
 
     @GET("book/{id}")
-    Call<BookResponse> getBookById(@Path("id") Long id);
+    Call<BookResponse> getBookById(@Path("id") long id);
 
     @GET("images/download-from-amazon")
     Call<UrlResponse> getFileBookToAws(@Query("fileName") String fileName);
