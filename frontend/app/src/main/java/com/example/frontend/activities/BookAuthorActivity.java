@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -42,7 +44,13 @@ public class BookAuthorActivity  extends AppCompatActivity {
         String categoryName = getIntent().getStringExtra("author_name");
         TextView categoryNameTextView = findViewById(R.id.tvIntroduction);
         categoryNameTextView.setText("Tác giả: "+categoryName);
-
+        ImageButton backButton = findViewById(R.id.btn_back_cate);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         recyclerView = this.findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(gridLayoutManager);
