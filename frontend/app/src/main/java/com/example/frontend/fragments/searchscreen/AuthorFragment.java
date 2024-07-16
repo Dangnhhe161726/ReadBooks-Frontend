@@ -1,5 +1,6 @@
 package com.example.frontend.fragments.searchscreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
+import com.example.frontend.activities.BookAuthorActivity;
+import com.example.frontend.activities.CategoryDetailActivity;
 import com.example.frontend.adapters.searchscreen.SearchAuthorAdapter;
 import com.example.frontend.event.OnAuthorClickListener;
 import com.example.frontend.models.Author;
@@ -94,7 +97,9 @@ public class AuthorFragment extends Fragment implements OnAuthorClickListener {
 
     @Override
     public void onAuthorClick(Author author) {
-        Toast.makeText(getContext(), "Clicked author: " + author.getName(), Toast.LENGTH_SHORT).show();
-        // Handle click event here, for example, navigate to author details or perform other actions
+        Intent intent = new Intent(getActivity(), BookAuthorActivity.class);
+        intent.putExtra("author_id", author.getId());
+        intent.putExtra("author_name", author.getName());
+        startActivity(intent);
     }
 }

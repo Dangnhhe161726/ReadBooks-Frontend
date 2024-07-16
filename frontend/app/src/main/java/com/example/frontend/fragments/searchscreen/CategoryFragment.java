@@ -1,5 +1,6 @@
 package com.example.frontend.fragments.searchscreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
+import com.example.frontend.activities.CategoryDetailActivity;
 import com.example.frontend.adapters.searchscreen.SearchCategoryAdapter;
 import com.example.frontend.event.OnCategoryClickListener;
 import com.example.frontend.models.Category;
@@ -94,7 +96,9 @@ public class CategoryFragment extends Fragment implements OnCategoryClickListene
 
     @Override
     public void onCategoryClick(Category category) {
-        Toast.makeText(getContext(), "Clicked category: " + category.getName(), Toast.LENGTH_SHORT).show();
-        // Handle click event here, for example, navigate to category details or perform other actions
+        Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
+        intent.putExtra("category_id", category.getId());
+        intent.putExtra("category_name", category.getName());
+        startActivity(intent);
     }
 }

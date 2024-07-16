@@ -1,12 +1,11 @@
 package com.example.frontend.activities;
 
-import static java.security.AccessController.getContext;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,8 +41,15 @@ public class CategoryDetailActivity extends AppCompatActivity {
 
         Long categoryId = getIntent().getLongExtra("category_id", -1);
         String categoryName = getIntent().getStringExtra("category_name");
+
+        if (categoryId == -1 || categoryName == null) {
+            Toast.makeText(this, "Invalid category information", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
         TextView categoryNameTextView = findViewById(R.id.tvIntroduction);
-        categoryNameTextView.setText("Thư Mục: "+categoryName);
+        categoryNameTextView.setText("Thư Mục: " + categoryName);
 
         recyclerView = this.findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
@@ -61,6 +67,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
         bookService = RetrofitClient.getClient(this).create(BookService.class);
         fetchBooks(categoryId);
     }
+
     private void fetchBooks(Long id) {
         Call<BookResponse> call = bookService.getBooksByCategoryId(id);
         call.enqueue(new Callback<BookResponse>() {

@@ -25,8 +25,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private NotificationItemListener notificationItemListener;
     private List<Notification> notifications;
 
-    public NotificationAdapter(List<Notification> notifications) {
+    public NotificationAdapter(List<Notification> notifications, NotificationItemListener listener) {
         this.notifications = notifications;
+        this.notificationItemListener = listener;
     }
 
     public List<Notification> getNotifications() {
@@ -35,14 +36,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public void setNotifications(List<Notification> notifications) {
         this.notifications = notifications;
-    }
-
-    public NotificationItemListener getNotificationItemListener() {
-        return notificationItemListener;
-    }
-
-    public void setNotificationItemListener(NotificationItemListener notificationItemListener) {
-        this.notificationItemListener = notificationItemListener;
     }
 
     @NonNull
