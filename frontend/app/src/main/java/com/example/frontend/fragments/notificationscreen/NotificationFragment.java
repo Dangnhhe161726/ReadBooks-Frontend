@@ -50,13 +50,18 @@ public class NotificationFragment extends Fragment {
         adapter = new NotificationAdapter(notificationList);
         recyclerView.setAdapter(adapter);
         FirebaseDatabase.getInstance().getReference("Notification")
+                .orderByChild("timestamp")  // Assuming "timestamp" is the field you're sorting by
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         notificationList.clear();
+                        List<Notification> tempList = new ArrayList<>();
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             Notification notification = dataSnapshot.getValue(Notification.class);
-                            notificationList.add(notification);
+                            tempList.add(notification);
+                        }
+                        for (int i = tempList.size() - 1; i >= 0; i--) {
+                            notificationList.add(tempList.get(i));
                         }
                         adapter.notifyDataSetChanged();
                     }
