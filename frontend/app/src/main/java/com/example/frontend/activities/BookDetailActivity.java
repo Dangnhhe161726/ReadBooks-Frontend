@@ -84,6 +84,10 @@ public class BookDetailActivity extends AppCompatActivity {
 
         if (bookId != -1) {
             fetchBookDetails(bookId);
+        }else {
+            Toast.makeText(this, "Invalid book information", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
 
         //Star event read book

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,11 +29,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookAuthorActivity  extends AppCompatActivity {
+public class BookAuthorActivity extends AppCompatActivity {
     private BookService bookService;
     List<Book> bookList;
     private NewBookAdapter bookAdapter;
     private RecyclerView recyclerView;
+    private Long authorId;
+    private String authorName;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -40,9 +43,17 @@ public class BookAuthorActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_detail);
 
-        Long categoryId = getIntent().getLongExtra("author_id", -1);
-        String categoryName = getIntent().getStringExtra("author_name");
+        authorId = getIntent().getLongExtra("author_id", -1);
+        authorName = getIntent().getStringExtra("author_name");
+
+        if (authorId == -1 || authorName == null) {
+            Toast.makeText(this, "Invalid author information", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
         TextView categoryNameTextView = findViewById(R.id.tvIntroduction);
+
         categoryNameTextView.setText("Tác giả: "+categoryName);
         ImageButton backButton = findViewById(R.id.btn_back_cate);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +62,7 @@ public class BookAuthorActivity  extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         recyclerView = this.findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -65,8 +77,9 @@ public class BookAuthorActivity  extends AppCompatActivity {
         });
         recyclerView.setAdapter(bookAdapter);
         bookService = RetrofitClient.getClient(this).create(BookService.class);
-        fetchBooks(categoryId);
+        fetchBooks(authorId);
     }
+
     private void fetchBooks(Long id) {
         Call<BookResponse> call = bookService.getBooksByAuthorId(id);
         call.enqueue(new Callback<BookResponse>() {
