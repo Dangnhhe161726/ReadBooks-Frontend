@@ -18,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserService {
     Gson gson = new GsonBuilder()
@@ -42,4 +43,7 @@ public interface UserService {
 
     @GET("auth/userinfo")
     Call<DataResponse> getUserInfor();
+
+    @GET("user/{id}")
+    Call<DataResponse> getById(@Path("id") Long id);
 }

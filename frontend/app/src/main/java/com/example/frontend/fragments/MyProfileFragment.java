@@ -21,6 +21,7 @@ import com.example.frontend.activities.ChangeAvaActivity;
 import com.example.frontend.activities.ChangePasswordActivity;
 import com.example.frontend.activities.DetailedProfileActivity;
 import com.example.frontend.activities.LoginActivity;
+import com.example.frontend.responses.DataResponse;
 import com.example.frontend.responses.ProfileResponse;
 import com.example.frontend.responses.UserResponse;
 import com.example.frontend.services.AuthorService;
@@ -104,9 +105,9 @@ public class MyProfileFragment extends Fragment {
     }
 
     private void fetchUserProfile() {
-        authorService.getProfile().enqueue(new Callback<ProfileResponse>() {
+        authorService.getProfile().enqueue(new Callback<DataResponse>() {
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     userProfile = response.body().getData().getUser();
                     updateUI(userProfile);
@@ -127,7 +128,7 @@ public class MyProfileFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+            public void onFailure(Call<DataResponse> call, Throwable t) {
                 // Handle failure
                 Log.e("MyProfileFragment", "Error fetching user profile", t);
             }

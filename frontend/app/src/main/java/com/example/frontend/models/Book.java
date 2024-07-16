@@ -17,18 +17,12 @@ public class Book {
     @SerializedName("update_time")
     private Date updateTime;
     private String introduce;
-    private List<FeedBack> feedbacks;
     private boolean status;
     private Author author;
     private List<Category> categories;
     private List<BookMark> bookMarks;
-    public List<FeedBack> getFeedbacks() {
-        return feedbacks;
-    }
 
-    public void setFeedbacks(List<FeedBack> feedbacks) {
-        this.feedbacks = feedbacks;
-    }
+
 
     public Book() {
     }
@@ -135,24 +129,5 @@ public class Book {
 
     public void setBookMarks(List<BookMark> bookMarks) {
         this.bookMarks = bookMarks;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", link='" + link + '\'' +
-                ", view=" + view +
-                ", favorites=" + favorites +
-                ", thumbnail='" + thumbnail + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", introduce='" + introduce + '\'' +
-                ", feedbacks=" + feedbacks +
-                ", status=" + status +
-                ", author=" + author +
-                ", categories=" + categories +
-                '}';
     }
 }

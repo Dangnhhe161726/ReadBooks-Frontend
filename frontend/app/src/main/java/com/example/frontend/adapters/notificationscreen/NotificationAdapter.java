@@ -75,6 +75,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 LocalDateTime parsedDateTime = LocalDateTime.parse(createTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
                 LocalDateTime currentDateTime = LocalDateTime.now();
 
+                long minutesBetween = ChronoUnit.MINUTES.between(parsedDateTime, currentDateTime);
+                long hoursBetween = ChronoUnit.HOURS.between(parsedDateTime, currentDateTime);
                 long daysBetween = ChronoUnit.DAYS.between(parsedDateTime, currentDateTime);
                 long monthsBetween = ChronoUnit.MONTHS.between(parsedDateTime, currentDateTime);
                 long yearsBetween = ChronoUnit.YEARS.between(parsedDateTime, currentDateTime);
@@ -84,8 +86,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     timeDifference = yearsBetween + " năm trước";
                 } else if (monthsBetween > 0) {
                     timeDifference = monthsBetween + " tháng trước";
-                } else {
+                } else if(daysBetween > 0) {
                     timeDifference = daysBetween + " ngày trước";
+                } else  if(hoursBetween > 0){
+                    timeDifference = hoursBetween + " tiếng trước";
+                }else {
+                    timeDifference = minutesBetween + " phút trước";
                 }
 
                 holder.tvCreateTime.setText(timeDifference);

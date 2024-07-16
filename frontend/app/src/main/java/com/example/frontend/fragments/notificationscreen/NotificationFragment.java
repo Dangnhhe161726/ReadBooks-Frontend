@@ -80,7 +80,6 @@ public class NotificationFragment extends Fragment implements NotificationAdapte
         Notification clickedNotification = notificationList.get(position);
         Intent intent = new Intent(view.getContext(), BookDetailActivity.class);
         intent.putExtra("BOOK_ID", clickedNotification.getBookId());
-        intent.putExtra("ACTION_NAME", "NOTIFICATION");
         startActivity(intent);
     }
 }

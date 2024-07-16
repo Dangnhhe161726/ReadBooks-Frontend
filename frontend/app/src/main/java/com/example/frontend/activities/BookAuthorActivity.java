@@ -52,9 +52,9 @@ public class BookAuthorActivity extends AppCompatActivity {
             return;
         }
 
-        TextView categoryNameTextView = findViewById(R.id.tvIntroduction);
+        TextView authorNameTextView = findViewById(R.id.tvIntroduction);
 
-        categoryNameTextView.setText("Tác giả: "+categoryName);
+        authorNameTextView.setText("Tác giả: "+authorName);
         ImageButton backButton = findViewById(R.id.btn_back_cate);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
