@@ -53,3 +53,4 @@ app/src/google-services.json
 .idea
 
 
+/app/google-services.json

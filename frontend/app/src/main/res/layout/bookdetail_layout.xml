@@ -6,10 +6,22 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".activities.BookDetailActivity">
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/baseline_arrow_back_ios_new_24"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:contentDescription="Back" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/btn_back"
         android:layout_above="@+id/button_layout"
         android:fillViewport="true">
 
