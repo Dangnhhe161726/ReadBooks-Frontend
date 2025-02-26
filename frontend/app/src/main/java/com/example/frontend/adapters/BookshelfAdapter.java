@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.frontend.event.OnBookClickListener;
 import com.example.frontend.models.Book;
 import com.example.frontend.R;
 import com.squareup.picasso.Picasso;
@@ -19,11 +21,15 @@ import java.util.List;
 public class BookshelfAdapter extends RecyclerView.Adapter<BookshelfAdapter.BookViewHolder> {
     private List<Book> bookList;
     private Context context;
+    private OnBookClickListener listener;
 
 
-    public BookshelfAdapter(Context context,List<Book> bookList) {
+
+
+
+    public BookshelfAdapter(Context context,List<Book> bookList,OnBookClickListener listener) {
         this.context = context;
-
+        this.listener = listener;
         this.bookList = bookList;
     }
     @NonNull
@@ -34,19 +40,17 @@ public class BookshelfAdapter extends RecyclerView.Adapter<BookshelfAdapter.Book
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookshelfAdapter.BookViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = bookList.get(position);
-        Picasso.get().load(book.getThumbnail()).into(holder.ivBookCover);
-        holder.tvBookTitle.setText(book.getName());
-        holder.tvBookAuthor.setText(book.getAuthor().getName());
-    }
 
+        holder.bind(book, listener);
+    }
     @Override
     public int getItemCount() {
         return bookList.size();
     }
-    public static class BookViewHolder extends RecyclerView.ViewHolder {
 
+    public static class BookViewHolder extends RecyclerView.ViewHolder {
         ImageView ivBookCover;
         TextView tvBookTitle;
         TextView tvBookAuthor;
@@ -56,6 +60,20 @@ public class BookshelfAdapter extends RecyclerView.Adapter<BookshelfAdapter.Book
             ivBookCover = itemView.findViewById(R.id.ivBookCover);
             tvBookTitle = itemView.findViewById(R.id.tvBookTitle);
             tvBookAuthor = itemView.findViewById(R.id.tvBookAuthor);
+        }
+
+        public void bind(final Book book, final OnBookClickListener listener) {
+            // Assuming your Book class has getCoverUrl(), getTitle(), and getAuthor() methods
+            Glide.with(itemView.getContext()).load(book.getThumbnail()).into(ivBookCover);
+            tvBookTitle.setText(book.getName());
+            tvBookAuthor.setText(book.getAuthor().getName());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onBookClick(book);
+                }
+            });
         }
     }
 }

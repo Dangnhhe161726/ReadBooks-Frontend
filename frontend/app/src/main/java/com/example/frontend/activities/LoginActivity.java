@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
 
-import com.example.frontend.MainActivity;
 import com.example.frontend.events.OnSwipeTouchListener;
 import com.example.frontend.R;
 import com.example.frontend.requests.LoginRequest;

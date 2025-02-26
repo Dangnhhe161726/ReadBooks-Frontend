@@ -14,8 +14,14 @@ gson = "2.11.0"
 picasso = "2.71828"
 glide = "5.0.0-rc01"
 blurry = "4.0.1"
-
-
+androidPdfViewer = "3.2.0-beta.1"
+firebaseMessaging = "24.0.0"
+firebaseAnalytics = "22.0.2"
+firebaseBom = "33.1.2"
+firebaseDatabase = "21.0.0"
+circleimageview = "3.1.0"
+threetenabp = "1.4.7"
+fragment = "1.8.1"
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -31,7 +37,14 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 blurry = { group = "jp.wasabeef", name = "blurry", version.ref = "blurry" }
-
+android-pdf-viewer = { group = "com.github.barteksc", name = "android-pdf-viewer", version.ref = "androidPdfViewer" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
+threetenabp = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threetenabp" }
+fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 

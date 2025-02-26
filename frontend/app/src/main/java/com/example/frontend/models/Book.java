@@ -17,51 +17,14 @@ public class Book {
     @SerializedName("update_time")
     private Date updateTime;
     private String introduce;
-    private List<FeedBack> feedbacks;
     private boolean status;
     private Author author;
     private List<Category> categories;
+    private List<BookMark> bookMarks;
 
-    public List<FeedBack> getFeedbacks() {
-        return feedbacks;
-    }
 
-    public void setFeedbacks(List<FeedBack> feedbacks) {
-        this.feedbacks = feedbacks;
-    }
 
     public Book() {
-    }
-
-    public Book(Long id, String name, String link, int view, int favorites, String thumbnail, Date createTime, Date updateTime, String introduce, List<FeedBack> feedbacks, boolean status, Author author, List<Category> categories) {
-        this.id = id;
-        this.name = name;
-        this.link = link;
-        this.view = view;
-        this.favorites = favorites;
-        this.thumbnail = thumbnail;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.introduce = introduce;
-        this.feedbacks = feedbacks;
-        this.status = status;
-        this.author = author;
-        this.categories = categories;
-    }
-
-    public Book(Long id, String name, String link, int view, int favorites, String thumbnail, Date createTime, Date updateTime, String introduce, boolean status, Author author, List<Category> categories) {
-        this.id = id;
-        this.name = name;
-        this.link = link;
-        this.view = view;
-        this.favorites = favorites;
-        this.thumbnail = thumbnail;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.introduce = introduce;
-        this.status = status;
-        this.author = author;
-        this.categories = categories;
     }
 
     public Long getId() {
@@ -160,22 +123,11 @@ public class Book {
         this.categories = categories;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", link='" + link + '\'' +
-                ", view=" + view +
-                ", favorites=" + favorites +
-                ", thumbnail='" + thumbnail + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", introduce='" + introduce + '\'' +
-                ", feedbacks=" + feedbacks +
-                ", status=" + status +
-                ", author=" + author +
-                ", categories=" + categories +
-                '}';
+    public List<BookMark> getBookMarks() {
+        return bookMarks;
+    }
+
+    public void setBookMarks(List<BookMark> bookMarks) {
+        this.bookMarks = bookMarks;
     }
 }

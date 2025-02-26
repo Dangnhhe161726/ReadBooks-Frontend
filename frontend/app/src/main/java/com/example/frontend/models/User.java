@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.sql.Date;
 
-public class User {
+public class User  {
     private long id;
 
     @SerializedName("full_name")

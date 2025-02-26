@@ -9,5 +9,8 @@
     <color name="orange_1">#F48639</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#B8B8B8</color>
+    <color name="green">#00C853</color>
 
 </resources>

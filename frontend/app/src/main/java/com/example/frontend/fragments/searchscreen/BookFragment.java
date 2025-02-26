@@ -1,5 +1,6 @@
 package com.example.frontend.fragments.searchscreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
+import com.example.frontend.activities.BookDetailActivity;
 import com.example.frontend.adapters.searchscreen.SearchBookAdapter;
+import com.example.frontend.models.Book;
 import com.example.frontend.networks.RetrofitClient;
 import com.example.frontend.responses.PaginationResponse;
 import com.example.frontend.services.BookService;
@@ -22,14 +25,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookFragment extends Fragment {
+public class BookFragment extends Fragment implements SearchBookAdapter.SearchBookItemListener {
 
     private RecyclerView reViewFragmentBook;
     private SearchBookAdapter adapter;
     private String query;
     private int currentPage;
     private int pageSize;
-
     private BookService bookService;
 
     public String getQuery() {
@@ -51,6 +53,7 @@ public class BookFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         reViewFragmentBook.setLayoutManager(manager);
         adapter = new SearchBookAdapter();
+        adapter.setSearchBookItemListener(this);
         reViewFragmentBook.setAdapter(adapter);
         currentPage = 0;
         pageSize = 5;
@@ -93,4 +96,13 @@ public class BookFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Book clickedBook = adapter.getBooks().get(position);
+        Intent intent = new Intent(view.getContext(), BookDetailActivity.class);
+        intent.putExtra("BOOK_ID", clickedBook.getId());
+        startActivity(intent);
+    }
 }
+

@@ -1,24 +1,29 @@
 package com.example.frontend.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FeedBack {
+public class FeedBack implements Serializable {
 
-    private Long id;
-
-
+    private Long bookId;
     private String content;
+    private String createTime;
+    private int numberComment;
+    private int numberLike;
+    private int parentId;
+    private Long userId;
+    private String key;
 
-
-    private int numLike;
-
-    public Long getId() {
-        return id;
+    public FeedBack() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
 
     public String getContent() {
@@ -29,43 +34,51 @@ public class FeedBack {
         this.content = content;
     }
 
-    public int getNumLike() {
-        return numLike;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setNumLike(int numLike) {
-        this.numLike = numLike;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public User getUserEntity() {
-        return userEntity;
+    public int getNumberComment() {
+        return numberComment;
     }
 
-    public FeedBack(Long id, String content, int numLike, User userEntity, Book book) {
-        this.id = id;
-        this.content = content;
-        this.numLike = numLike;
-        this.userEntity = userEntity;
+    public void setNumberComment(int numberComment) {
+        this.numberComment = numberComment;
     }
 
-    public void setUserEntity(User userEntity) {
-        this.userEntity = userEntity;
+    public int getNumberLike() {
+        return numberLike;
     }
 
-
-    private User userEntity;
-
-
-    @Override
-    public String toString() {
-        return "FeedBack{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", numLike=" + numLike +
-                ", userEntity=" + userEntity +
-                ", book="  +
-                '}';
+    public void setNumberLike(int numberLike) {
+        this.numberLike = numberLike;
     }
-//    private FeedBack feedback;
-//    private List<Feedback> feedbacks = new ArrayList<>();
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 }

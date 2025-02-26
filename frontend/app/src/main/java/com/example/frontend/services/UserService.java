@@ -4,6 +4,7 @@ import com.example.frontend.models.Data;
 import com.example.frontend.networks.UnsafeOkHttpClient;
 import com.example.frontend.requests.LoginRequest;
 import com.example.frontend.requests.RegisterRequest;
+import com.example.frontend.responses.DataResponse;
 import com.example.frontend.responses.LoginResponse;
 import com.example.frontend.responses.RegisterResponse;
 import com.example.frontend.responses.UserResponse;
@@ -17,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserService {
     Gson gson = new GsonBuilder()
@@ -38,4 +40,10 @@ public interface UserService {
     @POST("auth/register")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
+
+    @GET("auth/userinfo")
+    Call<DataResponse> getUserInfor();
+
+    @GET("user/{id}")
+    Call<DataResponse> getById(@Path("id") Long id);
 }

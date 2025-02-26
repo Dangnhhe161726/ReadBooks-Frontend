@@ -10,6 +10,39 @@ public class Data {
     private List<Author> Authors;
     private Book Book;
     private ProductPage productPage;
+    private String Token;
+    private UserResponse user;
+    private String url;
+    private BookMark bookMark;
+    private List<BookMark> bookMarks;
+    private UserByToken userByToken;
+
+    public Data() {
+    }
+
+    public UserByToken getUserByToken() {
+        return userByToken;
+    }
+
+    public void setUserByToken(UserByToken userByToken) {
+        this.userByToken = userByToken;
+    }
+
+    public BookMark getBookMark() {
+        return bookMark;
+    }
+
+    public void setBookMark(BookMark bookMark) {
+        this.bookMark = bookMark;
+    }
+
+    public List<BookMark> getBookMarks() {
+        return bookMarks;
+    }
+
+    public void setBookMarks(List<BookMark> bookMarks) {
+        this.bookMarks = bookMarks;
+    }
 
     public Book getBook() {
         return Book;
@@ -35,10 +68,12 @@ public class Data {
         this.Authors = authors;
     }
 
-    private String Token;
-    private UserResponse user;
+    public String getUrl() {
+        return url;
+    }
 
-    public Data() {
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public List<Book> getBooks() {

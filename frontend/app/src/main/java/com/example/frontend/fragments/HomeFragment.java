@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
+import com.example.frontend.activities.BookAuthorActivity;
 import com.example.frontend.activities.BookDetailActivity;
+import com.example.frontend.activities.CategoryDetailActivity;
 import com.example.frontend.adapters.BookshelfAdapter;
 import com.example.frontend.adapters.TopTrendBookAdapter;
 import com.example.frontend.event.OnBookClickListener;
@@ -74,7 +76,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onBookClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);
-                intent.putExtra("BOOK_ID", String.valueOf(book.getId()));
+                intent.putExtra("BOOK_ID", book.getId());
                 startActivity(intent);
             }
         });
@@ -82,7 +84,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onBookClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);
-                intent.putExtra("BOOK_ID", String.valueOf(book.getId()));
+                intent.putExtra("BOOK_ID", book.getId());
                 startActivity(intent);
             }
         });
@@ -198,6 +200,12 @@ public class HomeFragment extends Fragment {
             );
             params.setMargins(8, 0, 8, 0); // Add margin between categories
             categoryTextView.setLayoutParams(params);
+            categoryTextView.setOnClickListener(v -> {
+                Intent intent = new Intent(getContext(), CategoryDetailActivity.class);
+                intent.putExtra("category_id", category.getId());
+                intent.putExtra("category_name", category.getName());
+                startActivity(intent);
+            });
 
             // Add the TextView to the LinearLayout
             categoryContainer.addView(categoryTextView);
@@ -223,6 +231,12 @@ public class HomeFragment extends Fragment {
             );
             params.setMargins(8, 0, 8, 0); // Add margin between authors
             authorTextView.setLayoutParams(params);
+            authorTextView.setOnClickListener(v -> {
+                Intent intent = new Intent(getContext(), BookAuthorActivity.class);
+                intent.putExtra("author_id", author.getId());
+                intent.putExtra("author_name", author.getName());
+                startActivity(intent);
+            });
 
             // Add the TextView to the LinearLayout
             authorContainer.addView(authorTextView);

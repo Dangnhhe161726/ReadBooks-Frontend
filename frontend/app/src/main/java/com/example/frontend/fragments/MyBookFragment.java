@@ -1,6 +1,7 @@
 package com.example.frontend.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frontend.R;
+import com.example.frontend.activities.BookDetailActivity;
 import com.example.frontend.adapters.BookshelfAdapter;
+import com.example.frontend.adapters.TopTrendBookAdapter;
+import com.example.frontend.event.OnBookClickListener;
 import com.example.frontend.models.Book;
+import com.example.frontend.models.UserByToken;
 import com.example.frontend.networks.RetrofitClient;
 import com.example.frontend.responses.BookResponse;
+import com.example.frontend.responses.DataResponse;
 import com.example.frontend.services.BookService;
+import com.example.frontend.services.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +37,10 @@ public class MyBookFragment extends Fragment {
     private RecyclerView recyclerView;
     private BookshelfAdapter bookAdapter;
     private BookService bookService;
+    private UserService userService;
     List<Book> bookList;
+    private UserByToken user;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,11 +49,43 @@ public class MyBookFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
         bookList = new ArrayList<>();
-        bookAdapter = new BookshelfAdapter(getContext(), bookList);
-        recyclerView.setAdapter(bookAdapter);
+        bookAdapter = new BookshelfAdapter(getContext(), bookList, new OnBookClickListener() {
+            @Override
+            public void onBookClick(Book book) {
+                Intent intent = new Intent(getContext(), BookDetailActivity.class);
+                intent.putExtra("BOOK_ID", book.getId());
+                startActivity(intent);
+            }
+        });        recyclerView.setAdapter(bookAdapter);
+        userService = RetrofitClient.getClient(view.getContext()).create(UserService.class);
         bookService = RetrofitClient.getClient(view.getContext()).create(BookService.class);
-        fetchBooks(1L);
+        getUser();
         return view;
+    }
+
+    private void getUser() {
+        Call<DataResponse> call = userService.getUserInfor();
+
+        call.enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    user = response.body().getData().getUserByToken();
+                    if (user != null) {
+                        fetchBooks(user.getId());
+                    } else {
+                        Log.e("API Error", "User is null");
+                    }
+                } else {
+                    Log.e("API Error", "Failed to get user info: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+                Log.e("API Error", "Failure: " + t.getMessage());
+            }
+        });
     }
 
     private void fetchBooks(Long id) {
